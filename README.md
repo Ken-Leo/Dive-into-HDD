@@ -11,7 +11,7 @@ GitHub地址：https://github.com/Ken-Leo/Dive-into-HDD
 
 ## 简介
 
-本书尽可能覆盖 HDD 技术的各个层面，从学术研究的角度出发，主要介绍磁存储技术在学术研究及工业理论验证阶段的主要内容。本仓库主要包含 docs 和 figures 两个文件夹，其中 docs 文件夹用于存放本书《深入浅出HDD》各章节 markdown 格式的内容，而 figures 文件夹用于存放对应各章节所需的图片，未来计划争取以正式形式面向全社会读者出版，内容上可能会和正式书籍存在差别。如果您是相关领域的学者或对本书涉及的技术感兴趣，欢迎对本项目做出贡献或提出 issue。
+本书尽可能覆盖 HDD 技术的各个层面，从学术研究的角度出发，主要介绍磁存储技术在学术研究及工业理论验证阶段的主要内容。本仓库主要包含 docs、figures 和 code 三个文件夹：docs 用于存放本书《深入浅出HDD》各章节 markdown 格式的内容与策划文档，figures 用于存放对应各章节所需的图片（含源文件），code 用于存放附录 C 的可复现仿真代码。，未来计划争取以正式形式面向全社会读者出版，内容上可能会和正式书籍存在差别。如果您是相关领域的学者或对本书涉及的技术感兴趣，欢迎对本项目做出贡献或提出 issue。
 
 ## 面向人群
 
@@ -19,36 +19,47 @@ GitHub地址：https://github.com/Ken-Leo/Dive-into-HDD
 
 ## 本书目录
 
- * [1.简介](docs/introduction.md#introduction)
- * [2.数据存储技术简介](docs/intro_data_storage.md#intro_data_storage)
-   * [机械硬盘](docs/hdd.md#hdd)
-   * [固态硬盘](docs/ssd.md#ssd)
-   * [磁带](docs/tape.md#tape)
-   * [光盘](docs/od.md#od)
-   * [机械硬盘发展史](docs/history.md#history)
- * [3.磁记录技术研究现状](docs/research_status.md#research_status)
-   * [一维磁记录](docs/one_diemnsional.md#one_diemnsional)
-   * [二维磁记录](docs/two_dimensional.md#two_dimensional)
-   * [三维磁记录](docs/three_dimensional.md#three_dimensional)
- * [4.通道模型](docs/channel.md#channel)
-   * [写通道模型](docs/write_channel.md#write_channel)
-   * [介质模型](docs/media_model.md#media_model)
-   * [读通道模型](docs/read_channel.md#read_channel)
-   * [噪声](docs/noise.md#noise)
- * [5.均衡技术](docs/equalization.md#equalization)
-   * [线性均衡](docs/linear_equation.md#linear_equation)
-   * [非线性均衡](docs/nonlinear_equation.md#nonlinear_equation)
- * [6.检测技术](docs/detection.md#detection)
-   * [极大似然序列检测](docs/mlsd.md#mlsd)
-   * [最大后验概率检测](docs/map.md#map)
-   * [机器学习检测](docs/ml.md#ml)
- * [7.差错控制编解码](docs/ecc.md#ecc)
- * [8.约束编解码](docs/rll.md#rll)
- * [9.磁记录数据存取通道技术](docs/scheme.md#scheme)
- * [10.其他存储技术](docs/else.md#else)
-   * [磁带技术及其发展](docs/tape_tech.md)
-   * [光盘技术及其发展](docs/od_tech.md)
- * [Todo]
+> 以下为 2026-09-09 定稿的 18 章提纲（五编 + 附录 A–D）。章节正文撰写中，实时进度见 [写作进度表](docs/plan/progress.md)，完整提纲见 [图书方案与章节提纲](docs/plan/book-outline.md)。
+
+**第一编 · 总览与基础**
+
+1. 简介
+2. 数据存储技术简介
+3. 磁记录基础知识与整机构成
+
+**第二编 · 读写信道与信号处理**
+
+4. 数学工具与前置知识
+5. 记录物理、信道建模与读写过程
+6. 均衡技术
+7. 检测技术
+8. 时钟/定时恢复
+
+**第三编 · 机电控制与伺服**
+
+9. 磁头定位伺服机构与控制
+10. 主轴电机控制与伺服道刻写器
+11. 双级执行器与微驱动
+
+**第四编 · 编码与信息论**
+
+12. 差错控制编解码
+13. 约束编解码
+14. 信息论与信道容量
+
+**第五编 · 整机与前沿**
+
+15. 磁记录数据存取通道与伺服信号处理
+16. 热凸点评估与记录技术前沿
+17. 其他存储技术
+18. 展望与结语
+
+**附录**
+
+- 附录 A 数学工具速查
+- 附录 B 术语与符号表
+- 附录 C 可复现仿真
+- 附录 D 工程实现要点速查
 
 持续更新中……
 
@@ -57,7 +68,7 @@ GitHub地址：https://github.com/Ken-Leo/Dive-into-HDD
 
 如果您在研究中使用了本项目请引用：
 
-```bibraries
+```bibtex
 @book{luoke2023,
     title={深入浅出HDD},
     author={罗可 and 陈进才 and 卢萍},
