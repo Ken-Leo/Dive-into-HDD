@@ -11,8 +11,16 @@
 | [进度追踪](plan/progress.md) | 章节状态、字数/图数/门禁统计、里程碑与周报（唯一进度真源） |
 | [独立评审意见](plan/plan-review.md) | 对提纲结构与实施可行性的独立评审（阻断项/重要项/建议项） |
 | [素材核验](plan/material-audit.md) | 逐章素材落点核验、汉字/图数统计、素材充足度与扩写倍率 |
+| [知识资产总图](plan/knowledge-assets.md) | 译稿/知识库/论文库/实验项目/报告/实测数据的资产地图、章节映射、使用规程与合规风险 |
+| [实验资产清单](plan/experiment-inventory.md) | 16 个本地实验/代码项目的用途、入口、测试、许可与移植评估 |
+| [知识库核验](plan/knowledge-base-inventory.md) | OpenKnowledgeBase 检索链、References 分类、IEEEtran 自著论文、项目报告与数据可用性 |
+| [实验与代码体系](plan/experiments.md) | 章节实验矩阵、代码架构、复现验收标准、迁移计划、版权处置 |
+| [文档与资产管理规范](plan/document-management.md) | 目录/命名/元数据/台账/图-代码映射/审校/版本管理规范 |
+| [资产台账](plan/asset-registry.csv) | 资产逐条台账（类型/路径/许可/章号/用法/状态/风险） |
 | [第 5 章详细大纲（样章）](plan/ch05-outline.md) | 样章节/小节结构、公式/图/习题/文献清单、素材落点与仿真设计 |
 | [章节写作模板](templates/chapter-template.md) | 统一章节结构、写作标记、交付前自检清单 |
+| [排版模板（ElegantBook 4.7）](templates/ElegantBook-4.7/README.md) | LaTeX 书籍排版模板（ElegantBook），用于后期排版与 PDF 生成 |
+| [实验与代码库](../code/README.md) | 共享库 `hddbook/`、章节实验脚本、测试与数据规范 |
 
 ## 编著约定
 
@@ -23,11 +31,14 @@
 - **素材指引**：见 `plan/book-outline.md` 第八节的素材索引与第六节的覆盖核对；逐章素材充足度见 `plan/material-audit.md`。
 - **版权**：前言设「素材版权与引用说明」，厂商/IEEE 图原创重绘；改写处标注来源。
 - **写作纪律**：不得整段照搬译稿；AI 起草内容须经作者逐节审校；文献逐条核验；未通过质量门禁的章节不得标记完成。
+- **实验与代码**：书中需要用实验/代码说明的论断必须配可运行脚本；每幅仿真图由脚本生成并在 `figures/manifest.yaml` 登记；代码须通过冒烟测试、标注来源与许可。
+- **资产合规**：公司实测数据（华为 NDA）引用前确认公开范围；IEEE/厂商图原创重绘；译稿在前言声明「编译/改写自」。
 
 ## 目录结构约定
 
-- `docs/plan/`：策划与执行类文档（定位、提纲、实施计划、进度、评审、素材核验、章节大纲、素材包）。
+- `docs/plan/`：策划与执行类文档（定位、提纲、实施计划、进度、评审、素材核验、知识资产、实验体系、文档规范、资产台账）。
 - `docs/chapters/`：各章正文（markdown），命名 `chNN-<slug>.md`，按实施计划第 3 节顺序推进。
 - `docs/templates/`：章节模板与写作规范。
-- `figures/`：各章图片，命名 `figures/chNN/figNN-MM-<slug>.{drawio,svg,png}`，每图附源文件。
-- `code/appendix-c/`：附录 C 可复现仿真代码，按章分目录。
+- `figures/`：各章图片，命名 `figures/chNN/figNN-MM-<slug>.{drawio,svg,png}`，每图附源文件；`figures/manifest.yaml` 为图-代码映射真源。
+- `code/`：`hddbook/` 共享库、`experiments/` 章节实验、`tests/` 冒烟测试、`data/` 样例数据；详见 `code/README.md`。
+- `tools/`：文档一致性检查（链接、图-代码 manifest、绝对路径、资产台账），提交前运行 `python tools/check_docs.py`。

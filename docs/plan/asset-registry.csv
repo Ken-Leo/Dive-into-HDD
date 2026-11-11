@@ -1,0 +1,32 @@
+asset_id,type,path,title,source,license,chapters,usage,status,risk,owner,last_checked
+TR-01,translation,/Volumes/Elements/HDD1-Volume-I,HDD Volume I 中文译稿（读写基础信道）,Piya 原著；自译,"原文版权 Piya；自译，需前言声明",3;5;7;15,theory,available,high,罗可,2026-11-11
+TR-02,translation,/Volumes/Elements/HDD2-Volume-II,HDD Volume II 中文译稿（接收机设计）,Piya 原著；自译,"原文版权 Piya；自译，需前言声明",6;7;8;13;15,theory,available,high,罗可,2026-11-11
+TR-03,translation,/Volumes/Elements/HDD3-Volume-III,HDD Volume III 中文译稿（先进接收机）,Piya 原著；自译,"原文版权 Piya；自译，需前言声明",7;12;16,theory,available,high,罗可,2026-11-11
+TR-04,translation,/Volumes/Elements/TranslationBooks/coding_signal_processing/chinese_final,编码与信号处理中文译稿（39 章）,CRC Press 原著；自译,"原文版权 CRC Press；自译，需前言声明",1-18,theory,available,high,罗可,2026-11-11
+TR-05,translation,/Volumes/Elements/TranslationBooks/hdd_mechatronics_control/chinese_final,HDD 机电控制中文译稿（5 章）,CRC Press 原著；自译,"原文版权 CRC Press；自译，需前言声明",9;10,theory,available,high,罗可,2026-11-11
+TR-06,translation,/Volumes/Elements/TranslationBooks/hdd_servo_systems/chinese_final,HDD 伺服系统中译稿（11 章）,Springer 原著；自译,"原文版权 Springer；自译，需前言声明",9;11,theory,available,high,罗可,2026-11-11
+KB-01,knowledge_base,/Volumes/Elements/OpenKnowledgeBase/OpenKnowledgeBase,HDD 论文结构化知识库（wiki+kb_index+graph）,MinerU+LLM 管线生成,"wiki 摘要可引用，须回溯原文与 DOI",3;5;7;16;18,citation,available,medium,罗可,2026-11-11
+REF-01,paper,/Volumes/Elements/References,磁记录/HDD 专题论文库（11,426 PDF）,公开论文与会议 digest,"IEEE/出版商版权；只引用不整图复制",5;6;7;9;10;12;13;15;16;17,citation,available,medium,罗可,2026-11-11
+IEEE-01,paper,/Volumes/Elements/IEEEtran,作者自著论文与投稿材料（约 10 篇可引用）,作者自有,"自著；在审稿件须标注状态",5;7;12;16;17,citation,available,medium,罗可,2026-11-11
+PRJ-01,data,/Volumes/Elements/HDDGroup2025,HAMR 项目报告/Slides/实测数据/HAMR-Code-S1/S2,华为横向项目,"公司数据，需确认公开范围；500gHDD zip 全零无效",5;15;16,data,partial,high,罗可,2026-11-11
+PRJ-02,report,/Volumes/Elements/HDDTapeGroup,HDD 原型算法合同/SOW/磁带报告,华为横向项目,"合同扫描件无文本层；公司保密",2;16;17,reference,partial,high,罗可,2026-11-11
+PRJ-03,data,/Volumes/Elements/TapeGroup2025,PRBS5 冲激响应/磁传递函数/TDMR 仿真,华为 TDMR 项目,"NDA；外发数据需确认",5;6;7;16,data,available,high,罗可,2026-11-11
+PRJ-04,report,/Volumes/Elements/HAMR-Progress-20260423,HAMR 读侧控制器进展报告（2026-04）,内部项目报告,"内部资料；图片路径需修正",15;16,reference,available,medium,罗可,2026-11-11
+PRJ-05,report,/Volumes/Elements/HAMR-Progress-20260514,HAMR 双模式流水线进展报告（2026-05）,内部项目报告,"内部资料；BER 口径待确认",15;16,reference,available,medium,罗可,2026-11-11
+PRJ-06,knowledge_base,/Volumes/Elements/DeepResearch,OpenKB 前身知识库构建管线,MinerU/OpenDataLoader+LLM,"自研；规模小，与 OpenKB 重复",16;18,reference,available,low,罗可,2026-11-11
+EXP-01,experiment,/Volumes/Elements/RSI4HDD,盲递归 GPR 目标优化（Python）,作者自有,"未声明（需作者授权）",6;7;8,experiment,available,medium,罗可,2026-11-11
+EXP-02,experiment,/Volumes/Elements/PRML-Explore,1-D PRML/NPML/PDNP/DD-NPML 实验平台,作者自有,"未声明（需作者授权）",6;7,experiment,available,medium,罗可,2026-11-11
+EXP-03,experiment,/Volumes/Elements/PSP,OPSP-VA 与 ITR 定时恢复,作者自有,Apache-2.0,8;15,experiment,available,low,罗可,2026-11-11
+EXP-04,experiment,/Volumes/Elements/HamrSimulator,HAMR 通道仿真器（C+Python 移植）,Vasic 实验室；作者移植,C 侧未声明；python_receiver Apache-2.0,13;16,experiment,available,low,罗可,2026-11-11
+EXP-05,experiment,/Volumes/Elements/RLL,RLL 约束编解码库（Python）,作者自有,"未声明（需作者授权）；专利码表须标注",13,experiment,available,low,罗可,2026-11-11
+EXP-06,experiment,/Volumes/Elements/TDMR_RCP_MMSE,2D RCP/MMSE 均衡与 MLSE,作者自有,"未声明（需作者授权）",5;6;16,experiment,available,medium,罗可,2026-11-11
+EXP-07,experiment,/Volumes/Elements/Read_Channel_Model_190412_1,TDMR 双层读通道/BCJR-LDPC turbo,作者自有,"未声明（需作者授权）",7;12;16,experiment,available,medium,罗可,2026-11-11
+EXP-08,experiment,/Volumes/Elements/ABCForDisc,2D/3D 均衡与 ABC/MMSE/NN 对比,作者自有,"未声明（需作者授权）",6;16,experiment,partial,medium,罗可,2026-11-11
+EXP-09,experiment,/Volumes/Elements/PRMLpro,读信道全链桌面应用（后端算法可剥离）,作者自有,"未声明（需作者授权）",5;8;15,experiment,partial,medium,罗可,2026-11-11
+EXP-10,experiment,/Volumes/Elements/MyPy/dibit,过采样 dibit 响应辨识,作者自有,"未声明；专利 US7760821B2 须标注",5;15,experiment,available,medium,罗可,2026-11-11
+EXP-11,experiment,/Volumes/Elements/MyPy/BD_Sim_for_BERvsiMLSE,蓝光 BD PRML/i-MLSE 仿真,作者自有,"未声明；ISO-IEC 30191 指标须核对",17,experiment,available,medium,罗可,2026-11-11
+EXP-12,experiment,/Volumes/Elements/MyPy/SYNCDEMO,实测 HDD 信号同步/伺服段检测,作者自有,"未声明；依赖 10 GSa/s CSV",8;15,data,partial,high,罗可,2026-11-11
+EXP-13,experiment,/Volumes/Elements/PRML-dynamicNLTS,动态 NLTS 建模与写前补偿,作者自有,"未声明；MATLAB 主链依赖 toolbox",5;15,experiment,partial,medium,罗可,2026-11-11
+EXP-14,experiment,/Volumes/Elements/Read_Channel_Model_250822 - reduced,双层/3D 多采样读通道（MATLAB）,作者自有,"未声明；纯 MATLAB，仅参考/数据",5;16,data,partial,high,罗可,2026-11-11
+EXP-15,experiment,/Volumes/Elements/MyPy/ModelTraining221104,NN 均衡/检测模型训练（Keras notebook）,作者自有,"未声明；仅 notebook+h5",7,reference,partial,high,罗可,2026-11-11
+EXP-16,experiment,/Volumes/Elements/HDDGroup2025/HAMR-Code-S1,HAMR 粒度级写入/回读仿真交付件,华为项目,"未声明；硬编码输出路径",16,experiment,partial,high,罗可,2026-11-11

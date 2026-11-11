@@ -1,0 +1,6 @@
+numpy>=2.0
+scipy>=1.14
+matplotlib>=3.9
+pandas>=2.2
+pytest>=8.0
+pyyaml>=6.0

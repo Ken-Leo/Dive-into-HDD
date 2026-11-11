@@ -1,0 +1,12 @@
+- figure_id: fig:5-5
+  chapter: 5
+  section: '5.3'
+  title: 纵向/垂直孤立重放脉冲及其幅度谱（PW50 依赖）
+  script: code/experiments/ch05_pulse_shape.py
+  command: python code/experiments/ch05_pulse_shape.py --out figures/ch05/fig05-05-pulse-shape.png
+  data: null
+  output: figures/ch05/fig05-05-pulse-shape.png
+  output_sha256: 7cb78059dfb1f00631f646581920b52c9d6d00a1fb04cad3bcfda5525789f654
+  source: 原创（Lorentz/Gaussian 教科书模型；参考编码书 Ch2 图2.5 的重绘思路）
+  license: CC BY 4.0（原创）
+  status: draft
