@@ -101,6 +101,48 @@ def check_registry() -> list[str]:
     return errors
 
 
+
+def check_book() -> tuple[list[str], list[str]]:
+    """Validate the ElegantBook typesetting project wiring."""
+    errors: list[str] = []
+    warnings: list[str] = []
+    main = ROOT / "book" / "main.tex"
+    if not main.exists():
+        errors.append("book/main.tex missing")
+    else:
+        text = main.read_text(encoding="utf-8")
+        if "elegantbook" not in text:
+            errors.append("book/main.tex does not use the elegantbook class")
+        if "addbibresource" not in text:
+            errors.append("book/main.tex missing \\addbibresource")
+    book_yaml = ROOT / "book" / "book.yaml"
+    if not book_yaml.exists():
+        errors.append("book/book.yaml missing")
+    else:
+        book = yaml.safe_load(book_yaml.read_text(encoding="utf-8")) or {}
+        entries = list(book.get("front") or [])
+        for part in book.get("parts") or []:
+            entries.extend(part.get("chapters") or [])
+        entries.extend(book.get("appendices") or [])
+        missing = [e["file"] for e in entries if not (ROOT / e["file"]).exists()]
+        if missing:
+            warnings.append(f"book.yaml: {len(missing)} chapter file(s) not written yet")
+    structure = ROOT / "book" / "sections" / "structure.tex"
+    if structure.exists():
+        for rel in re.findall(r"\\input\{([^}]+)\}", structure.read_text(encoding="utf-8")):
+            if not (ROOT / "book" / rel).exists():
+                errors.append(f"structure.tex references missing section: {rel}")
+    bib = ROOT / "book" / "reference.bib"
+    if bib.exists():
+        text = bib.read_text(encoding="utf-8")
+        for match in re.finditer(r"@(\w+)\{([^,]+),(.*?)(?=\n@|\Z)", text, re.S):
+            name, body = match.group(2), match.group(3)
+            for field in ("author", "title", "year"):
+                if field not in body:
+                    errors.append(f"reference.bib {name}: missing {field}")
+    return errors, warnings
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--strict", action="store_true", help="treat warnings as errors")
@@ -114,6 +156,9 @@ def main() -> int:
     warnings += w
     errors += check_absolute_paths()
     errors += check_registry()
+    e, w = check_book()
+    errors += e
+    warnings += w
 
     for msg in warnings:
         print(f"WARN  {msg}")

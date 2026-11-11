@@ -11,9 +11,20 @@
 Dive-into-HDD/
 ├── docs/
 │   ├── chapters/                 # 正文：chNN-<slug>.md
+│   ├── front/                    # 前言（版权与引用说明）
+│   ├── appendices/               # 附录 A–D（Markdown）
 │   ├── plan/                     # 策划与台账（本目录）
-│   ├── templates/                # 章节模板
+│   ├── templates/                # 章节模板 + ElegantBook-4.7
 │   └── archive/                  # 废弃稿/旧版本（保留原因与日期）
+├── book/                         # 排版工程（ElegantBook 4.7）
+│   ├── main.tex                  # 主文档（手工维护）
+│   ├── book.yaml                 # 编/章结构与构建清单（手工维护）
+│   ├── reference.bib             # 参考文献库（手工维护）
+│   ├── elegantbook.cls           # 锁定的模板类文件
+│   ├── assets/                   # 封面/徽标
+│   ├── sections/                 # 生成的 LaTeX 章节（禁止手改）
+│   ├── preview/                  # 里程碑预览 PDF
+│   └── build/                    # 构建产物（git 忽略）
 ├── figures/
 │   ├── chNN/                     # figNN-MM-<slug>.{drawio,svg,png}
 │   ├── manifest.yaml             # 图-代码-数据映射台账（唯一真源）
@@ -24,11 +35,11 @@ Dive-into-HDD/
 │   ├── tests/                    # 冒烟与回归测试
 │   ├── data/                     # 小型样例数据（≤10 MB/文件）
 │   └── requirements.txt
-├── tools/                        # 文档一致性检查脚本
+├── tools/                        # md2tex.py、build_book.py、check_docs.py
 └── README.md                     # 中英双语（英文在前）
 ```
 
-**禁止**：正文直接引用仓库外绝对路径；图件散落在 `docs/`；代码依赖 `~/Downloads` 或 `/Volumes/Elements` 的绝对路径（外部素材必须先复制/转换进仓库或由环境变量指定）。
+**禁止**：正文直接引用仓库外绝对路径；图件散落在 `docs/`；代码依赖 `~/Downloads` 或 `/Volumes/Elements` 的绝对路径（外部素材必须先复制/转换进仓库或由环境变量指定）；**手工编辑 `book/sections/*.tex`**（改 Markdown 后重新生成）。
 
 ---
 
@@ -137,8 +148,9 @@ CI/本地钩子：提交前跑 `python tools/check_docs.py --changed`；失败�
 | 角色 | 职责 |
 |------|------|
 | 作者 | 技术审校、工程经验补充、最终签字 |
-| 写作助手 | 素材包、初稿、图件脚本、一致性检查 |
+| 写作助手 | 素材包、初稿、图件脚本、一致性检查、Markdown→LaTeX 转换 |
 | 审读人（2 位） | 技术核验 + 体例语言审读，填 review-log |
 | 资产管理员（可由助手兼） | 台账维护、版权与数据合规、manifest 校验 |
+| 排版负责人 | `book/main.tex`/`book.yaml`/`reference.bib` 维护、构建与版面检查（见[排版方案](typesetting.md)） |
 
-**协作纪律**：同一文件同一时间只由一人修改；跨文件改动先在任务板登记写范围；提交前跑检查脚本；每日同步进度表。
+**协作纪律**：同一文件同一时间只由一人修改；跨文件改动先在任务板登记写范围；提交前跑 `tools/check_docs.py`；每日同步进度表；排版构建只由排版负责人执行，其他人改 Markdown 后等待重新生成。

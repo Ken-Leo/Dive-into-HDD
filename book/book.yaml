@@ -1,0 +1,98 @@
+# 书籍结构与构建清单（唯一真源）
+# 由 tools/build_book.py 读取；file 指向 Markdown 源，tex 为生成目标。
+# 缺失的 file 会被跳过并在构建报告中列出（便于分阶段推进）。
+
+title: 深入浅出HDD
+subtitle: 从磁记录理论到整机实践
+author: 罗可 \and 陈进才 \and 卢萍
+institute: 华中科技大学
+date: 2026年11月
+version: "0.1"
+
+front:
+  - file: docs/front/preface.md
+    tex: sections/front.tex
+
+parts:
+  - title: 第一编 总览与基础
+    chapters:
+      - id: ch01
+        file: docs/chapters/ch01-introduction.md
+        tex: sections/ch01.tex
+      - id: ch02
+        file: docs/chapters/ch02-data-storage.md
+        tex: sections/ch02.tex
+      - id: ch03
+        file: docs/chapters/ch03-magnetic-recording-basics.md
+        tex: sections/ch03.tex
+
+  - title: 第二编 读写信道与信号处理
+    chapters:
+      - id: ch04
+        file: docs/chapters/ch04-math-tools.md
+        tex: sections/ch04.tex
+      - id: ch05
+        file: docs/chapters/ch05-recording-channel.md
+        tex: sections/ch05.tex
+      - id: ch06
+        file: docs/chapters/ch06-equalization.md
+        tex: sections/ch06.tex
+      - id: ch07
+        file: docs/chapters/ch07-detection.md
+        tex: sections/ch07.tex
+      - id: ch08
+        file: docs/chapters/ch08-timing-recovery.md
+        tex: sections/ch08.tex
+
+  - title: 第三编 机电控制与伺服
+    chapters:
+      - id: ch09
+        file: docs/chapters/ch09-servo-mechanism.md
+        tex: sections/ch09.tex
+      - id: ch10
+        file: docs/chapters/ch10-spindle-stw.md
+        tex: sections/ch10.tex
+      - id: ch11
+        file: docs/chapters/ch11-dual-stage.md
+        tex: sections/ch11.tex
+
+  - title: 第四编 编码与信息论
+    chapters:
+      - id: ch12
+        file: docs/chapters/ch12-ecc.md
+        tex: sections/ch12.tex
+      - id: ch13
+        file: docs/chapters/ch13-rll.md
+        tex: sections/ch13.tex
+      - id: ch14
+        file: docs/chapters/ch14-information-theory.md
+        tex: sections/ch14.tex
+
+  - title: 第五编 整机与前沿
+    chapters:
+      - id: ch15
+        file: docs/chapters/ch15-channel-integration.md
+        tex: sections/ch15.tex
+      - id: ch16
+        file: docs/chapters/ch16-frontier.md
+        tex: sections/ch16.tex
+      - id: ch17
+        file: docs/chapters/ch17-other-storage.md
+        tex: sections/ch17.tex
+      - id: ch18
+        file: docs/chapters/ch18-outlook.md
+        tex: sections/ch18.tex
+
+appendices:
+  - title: 附录 A 数学工具速查
+    file: docs/appendices/appendix-a-math.md
+    tex: sections/appendix-a.tex
+  - title: 附录 B 术语与符号表
+    file: docs/appendices/appendix-b-terminology.md
+    tex: sections/appendix-b.tex
+  - title: 附录 C 可复现仿真
+    file: docs/appendices/appendix-c-experiments.md
+    tex: sections/appendix-c.tex
+  - title: 附录 D 工程实现要点速查
+    file: docs/appendices/appendix-d-engineering.md
+    tex: sections/appendix-d.tex

@@ -1,0 +1,60 @@
+% 《深入浅出HDD》主文档 —— 基于 ElegantBook 4.7（本地模板，版本锁定）
+% 由 tools/build_book.py 生成 sections/structure.tex 后编译。
+% 不要手工编辑 sections/*.tex（由 Markdown 自动生成）。
+\documentclass[lang=cn,newtx,10pt,scheme=chinese,bibstyle=gb7714-2015,citestyle=gb7714-2015]{elegantbook}
+
+\title{深入浅出HDD}
+\subtitle{从磁记录理论到整机实践}
+
+\author{罗可 \and 陈进才 \and 卢萍}
+\institute{华中科技大学}
+\date{2026年11月}
+\version{0.1}
+\bioinfo{书稿状态}{内部讨论稿}
+\extrainfo{书稿版本 0.1（2026-11-11）· 章节正文撰写中}
+
+% 成品书采用 16 开（185 mm × 260 mm）；ElegantBook 默认 A4，此处覆盖。
+\geometry{paperwidth=185mm,paperheight=260mm,top=22mm,bottom=22mm,left=20mm,right=20mm,headheight=2.17cm,headsep=4mm,footskip=12mm}
+
+\logo{assets/logo-blue.png}
+\cover{assets/cover.jpg}
+
+\setcounter{tocdepth}{3}
+
+% PDF 元数据（屏幕阅读与检索）
+\hypersetup{
+  pdftitle={深入浅出HDD：从磁记录理论到整机实践},
+  pdfauthor={罗可, 陈进才, 卢萍},
+  pdfsubject={机械硬盘（HDD）整机技术},
+  pdfkeywords={HDD, 磁记录, 读写信道, 伺服, 编码, 信号处理}
+}
+
+% 图表/公式编号统一为「章号-序号」（如 5-5），与全书提纲一致
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+
+% pandoc 生成紧凑列表时使用的命令（不在 ElegantBook 中定义）
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% pandoc 表格使用 longtable
+\usepackage{longtable}
+\usepackage{array}
+
+% 图片路径：正文图片位于仓库 figures/，编译目录为 book/
+\graphicspath{{../}{../figures/}{assets/}}
+
+% 参考文献（GB/T 7714-2015，biblatex + biber）
+\addbibresource[location=local]{reference.bib}
+
+\begin{document}
+
+\maketitle
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+% 由 build_book.py 生成的编/章结构（\part 与 \input）
+\input{sections/structure.tex}
+
+\end{document}

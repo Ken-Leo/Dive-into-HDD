@@ -16,6 +16,7 @@
 | [知识库核验](plan/knowledge-base-inventory.md) | OpenKnowledgeBase 检索链、References 分类、IEEEtran 自著论文、项目报告与数据可用性 |
 | [实验与代码体系](plan/experiments.md) | 章节实验矩阵、代码架构、复现验收标准、迁移计划、版权处置 |
 | [文档与资产管理规范](plan/document-management.md) | 目录/命名/元数据/台账/图-代码映射/审校/版本管理规范 |
+| [排版与构建方案](plan/typesetting.md) | ElegantBook 4.7 最终模板、16 开版式、Markdown→LaTeX→PDF 构建管线、编号/引用/图件规范与排版门禁 |
 | [资产台账](plan/asset-registry.csv) | 资产逐条台账（类型/路径/许可/章号/用法/状态/风险） |
 | [第 5 章详细大纲（样章）](plan/ch05-outline.md) | 样章节/小节结构、公式/图/习题/文献清单、素材落点与仿真设计 |
 | [章节写作模板](templates/chapter-template.md) | 统一章节结构、写作标记、交付前自检清单 |
@@ -36,9 +37,21 @@
 
 ## 目录结构约定
 
-- `docs/plan/`：策划与执行类文档（定位、提纲、实施计划、进度、评审、素材核验、知识资产、实验体系、文档规范、资产台账）。
+- `docs/plan/`：策划与执行类文档（定位、提纲、实施计划、进度、评审、素材核验、知识资产、实验体系、文档规范、排版方案、资产台账）。
 - `docs/chapters/`：各章正文（markdown），命名 `chNN-<slug>.md`，按实施计划第 3 节顺序推进。
-- `docs/templates/`：章节模板与写作规范。
+- `docs/front/`：前言（含素材版权与引用说明）。
+- `docs/appendices/`：附录 A–D 的 Markdown 源。
+- `docs/templates/`：章节模板与 ElegantBook 4.7 排版模板。
+- `book/`：排版工程（`main.tex`、`book.yaml`、`reference.bib`、生成的 `sections/`、构建产物 `build/`）；详见 [排版与构建方案](plan/typesetting.md)。
 - `figures/`：各章图片，命名 `figures/chNN/figNN-MM-<slug>.{drawio,svg,png}`，每图附源文件；`figures/manifest.yaml` 为图-代码映射真源。
 - `code/`：`hddbook/` 共享库、`experiments/` 章节实验、`tests/` 冒烟测试、`data/` 样例数据；详见 `code/README.md`。
-- `tools/`：文档一致性检查（链接、图-代码 manifest、绝对路径、资产台账），提交前运行 `python tools/check_docs.py`。
+- `tools/`：`md2tex.py`（Markdown→LaTeX）、`build_book.py`（构建 PDF）、`check_docs.py`（链接/manifest/台账检查）。
+
+## 构建书籍 PDF
+
+```bash
+python3 tools/build_book.py      # 转换 Markdown 并构建 book/build/main.pdf
+python3 tools/check_docs.py      # 一致性检查
+```
+
+环境要求：pandoc、TeX Live/MacTeX 2026（latexmk/xelatex/biber）。详见 [排版与构建方案](plan/typesetting.md)。

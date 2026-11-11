@@ -66,3 +66,7 @@ __pycache__/
 
 # Experiment outputs (regenerate via scripts)
 code/results/*.log
+
+# Book build artifacts
+book/build/
+book/sections/*.tex
