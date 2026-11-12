@@ -6,7 +6,7 @@
   command: python code/experiments/ch05_write_field.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-01-write-geometry.png
-  output_sha256: 4a34581407e1e94a279a28b19b44ef316368a7bbdf66cf00e4ab4df040a64aef
+  output_sha256: a013254c1020e57ce31a0c7ec31de52f0b255f31ce5a86e1a16e5199b3422ba5
   source: 原创重绘（据编码书 Ch2 图2.2/2.3 的几何关系；式 5-1/5-5）
   license: CC BY 4.0（原创）
   status: draft
@@ -18,7 +18,7 @@
   command: python code/experiments/ch05_channel_sim.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-10-isi-peak-detect.png
-  output_sha256: 003464692ab8e7f5cff3988489df4327523ade0ed9683c6ce2cd1d54de3becee
+  output_sha256: 399f583f8c50dbcbd1f824cab62e8a463141cbb73a5c6b7f617d5ca291d27d61
   source: 原创计算（重绘 Piya Ch6 图6.22/6.38 的 ISI 与峰移）
   license: CC BY 4.0（原创）
   status: draft
@@ -30,7 +30,7 @@
   command: python code/experiments/ch05_channel_sim.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-11-read-channel.png
-  output_sha256: 79fe1a902bb4ac46bff029d0660824f6d09d86dd109d71127fe135913975a54a
+  output_sha256: db5efa83ac201e67a39036c8bd2d3c7ab6900910e49884504075e8c426d39141
   source: 原创重绘（据 Piya Ch6 图6.24 的读信道架构）
   license: CC BY 4.0（原创）
   status: draft
@@ -102,7 +102,7 @@
   command: python code/experiments/ch05_rolloff.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-06-rolloff.png
-  output_sha256: c03356811b3da3fb8acb927942b141910cc51d7c3b4e0a1b1c00368148f5fa98
+  output_sha256: 31ccf396f7c65a8ddeaab45aad9d3a500fd5dd6c189fd58938541506e62c0419
   source: 原创计算（式 5-9；重绘编码书 Ch2 图2.7 与式 2.43/2.45）
   license: CC BY 4.0（原创）
   status: draft
@@ -114,7 +114,7 @@
   command: python code/experiments/ch05_media_noise.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-07-media-noise.png
-  output_sha256: 15f1f1c68edf2dad9f547321c09095f4c6666ad1c09c2b1bbe1ab64ff6564179
+  output_sha256: 411b2a6b42ef61a8e8bf4a8acd87ac5684514b5d71f04dc0dcd8dadb9f24a242
   source: 原创计算（式 5-11/5-12；据编码书 Ch2 §2.4.1 的噪声谱分解）
   license: CC BY 4.0（原创）
   status: draft
@@ -126,7 +126,7 @@
   command: python code/experiments/ch05_channel_sim.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-08-channel-model.png
-  output_sha256: 427c6cb436a80b04b10aa42242bb95350de15bf07276e15a832d4dc228757038
+  output_sha256: 55e1c1053ee4bbcfd227362ed1449676df9a14cc95cc62f77e5dbb0d48fa22bd
   source: 原创重绘（改编自编码书 Ch5 图5.4 与式 5-15/5-16）
   license: CC BY 4.0（原创）
   status: draft
@@ -138,7 +138,7 @@
   command: python code/experiments/ch05_snr_calib.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-09-simulator-flow.png
-  output_sha256: 3f81eaa23e17d56ab5fe7337af68ae285430ff510159eb90bc6575cf248f4d39
+  output_sha256: 2035ed849a7265a58606e2fadc384e6f12c23cd0fb76fcfe2373f81eaf2c29c1
   source: 原创重绘（改编自编码书 Ch6 图6.9/6.13 的仿真流程与式 6.42–6.46）
   license: CC BY 4.0（原创）
   status: draft

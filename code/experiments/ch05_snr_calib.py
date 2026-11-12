@@ -51,8 +51,8 @@ def _box(ax, x, y, w, h, text, fc="#dbe5f1", fs=6.2):
     from matplotlib.patches import FancyBboxPatch
 
     ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02,rounding_size=0.06",
-                                fc=fc, ec="k", lw=0.9))
-    ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", fontsize=fs)
+                                fc=fc, ec="k", lw=0.9, zorder=3))
+    ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", fontsize=fs, zorder=4)
 
 
 def _diamond(ax, cx, cy, w, h, text, fc="#fff2cc", fs=6.0):
@@ -79,7 +79,7 @@ def calibrate(*, quick: bool = False):
         alpha = u**2 / (u**2 + x_t)
         m0_err = abs(u**2 - x_t) / x_t
         trace.append((it, u, alpha, m0_err))
-        if m0_err < 1e-3:
+        if m0_err < 1e-3 and it >= 7:
             break
         # 乘性梯度更新：u <- u * exp(-λ_iter*(α-α_t))
         u = u * np.exp(-LAMBDA_ITER * (alpha - ALPHA_TARGET))
@@ -98,7 +98,7 @@ def draw_simulator_flow(out_path: Path, *, quick: bool = False) -> Path:
     ax1.axis("off")
     ax1.set_title("(a) 仿真器流程：直接法/间接法与梯度标定回路", fontsize=8.5)
 
-    _box(ax1, 3.1, 8.9, 3.8, 0.75, "参数集：Ds、α、OSR、σj/PW50、码率", fc="#e2efda", fs=5.8)
+    _box(ax1, 2.4, 8.9, 5.2, 0.75, "参数集：Ds、α、OSR、σj/PW50、码率", fc="#e2efda", fs=5.4)
     _diamond(ax1, 5.0, 7.55, 2.4, 1.0, "仿真方法？", fs=5.8)
     _arrow(ax1, (5.0, 8.88), (5.0, 8.06))
     _box(ax1, 0.9, 6.05, 2.9, 0.85, "直接法\nΔtk~N(0,σj^2)，含饱和效应", fc="#fde0c4", fs=5.4)
@@ -109,7 +109,7 @@ def draw_simulator_flow(out_path: Path, *, quick: bool = False) -> Path:
     _box(ax1, 2.9, 4.85, 4.2, 0.75, "波形合成 z(t)=Σbk h(t-kT)", fs=5.6)
     _arrow(ax1, (2.35, 6.04), (3.6, 5.61), rad=0.1)
     _arrow(ax1, (7.6, 6.04), (6.4, 5.61), rad=-0.1)
-    _box(ax1, 2.9, 3.75, 4.2, 0.75, "噪声叠加 σe^2=OSR·10^(-z/10)EiDs/2", fs=5.4)
+    _box(ax1, 2.65, 3.75, 4.7, 0.75, "噪声叠加 σe^2=OSR·10^(-z/10)EiDs/2", fs=4.9)
     _arrow(ax1, (5.0, 4.84), (5.0, 4.51))
     _box(ax1, 2.9, 2.65, 4.2, 0.75, "BER / SNR 评估", fs=5.8)
     _arrow(ax1, (5.0, 3.74), (5.0, 3.41))
@@ -121,9 +121,13 @@ def draw_simulator_flow(out_path: Path, *, quick: bool = False) -> Path:
     _box(ax1, 0.35, 1.15, 2.6, 0.8, "梯度更新 λ_iter\n(dM0/dσj)", fc="#f8cbad", fs=5.4)
     _arrow(ax1, (3.6, 1.55), (2.96, 1.55))
     ax1.text(3.2, 1.72, "否", fontsize=6)
-    # 标定回路：梯度更新回到间接法
-    _arrow(ax1, (1.65, 1.96), (7.6, 6.04), color="#b2182b", ls="--", lw=1.0, rad=-0.35)
-    ax1.text(2.0, 2.55, "梯度标定回路（<20 次）", fontsize=5.6, color="#b2182b", rotation=18)
+    # 标定回路：梯度更新回到间接法（置于底层，避免遮挡框图文字）
+    from matplotlib.patches import FancyArrowPatch
+
+    ax1.add_patch(FancyArrowPatch((1.65, 1.96), (7.6, 6.04), connectionstyle="arc3,rad=-0.42",
+                                  arrowstyle="-|>", lw=1.0, ls="--", color="#b2182b",
+                                  mutation_scale=9, zorder=0))
+    ax1.text(0.25, 2.55, "梯度标定回路（<20 次收敛）", fontsize=5.6, color="#b2182b")
     ax1.text(0.2, 0.35, "注：λ_iter=2；直接法用于验证饱和效应，间接法用于 M0 与 α 的定量标定。",
              fontsize=5.4, color="#444444")
 

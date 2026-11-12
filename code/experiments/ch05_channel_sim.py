@@ -68,16 +68,16 @@ def draw_channel_model(out_path: Path) -> Path:
 
     fig, ax = plt.subplots(figsize=(7.6, 3.2))
     ax.set_xlim(0, 10)
-    ax.set_ylim(0, 6.2)
+    ax.set_ylim(0, 5.2)
     ax.axis("off")
 
     boxes = [
-        (0.25, 1.30, "数据比特\na_k"),
-        (1.70, 1.40, "NRZI 预编码\n1/(1⊕D)"),
-        (3.25, 1.50, "差分 PAM\nb_k=a_k-a_{k-1}"),
-        (4.90, 1.30, "脉冲成形\nh(t)"),
-        (6.35, 1.35, "叠加\nΣb_k h(t-kT)"),
-        (7.85, 1.30, "读回\nz(t)"),
+        (0.25, 1.30, "数据比特\n$a_k$"),
+        (1.70, 1.40, "NRZI 预编码\n$1/(1\\oplus D)$"),
+        (3.25, 1.50, "差分 PAM\n$b_k=a_k-a_{k-1}$"),
+        (4.90, 1.30, "脉冲成形\n$h(t)$"),
+        (6.35, 1.35, "叠加\n$\\sum_k b_k h(t-kT)$"),
+        (7.85, 1.30, "读回\n$z(t)$"),
     ]
     for i, (x, w, txt) in enumerate(boxes):
         _box(ax, x, 3.55, w, 1.15, txt, fs=6.5)
@@ -86,11 +86,10 @@ def draw_channel_model(out_path: Path) -> Path:
         _arrow(ax, (x0 + 0.02, 4.12), (boxes[i + 1][0] - 0.02, 4.12))
 
     # 噪声注入：抖动噪声（1PW/2PW）与 AWGN 叠加到读回端
-    _box(ax, 5.55, 1.15, 2.30, 0.95, "1PW/2PW 抖动噪声\nΔt_k, Δw_k（σj, σa）", fc="#fde0c4", fs=6)
+    _box(ax, 5.45, 1.15, 2.50, 0.95, "1PW/2PW 抖动噪声\n$\\Delta t_k,\\Delta w_k$（$\\sigma_j,\\sigma_a$）", fc="#fde0c4", fs=5.8)
     _box(ax, 8.05, 1.15, 1.70, 0.95, "AWGN\n$\\sigma_e^2$（OSR, α）", fc="#e2efda", fs=6)
     _arrow(ax, (6.70, 2.12), (6.70, 3.53), color="#d95f02", ls="--")
     _arrow(ax, (8.90, 2.12), (8.90, 3.53), color="#2ca02c", ls="--")
-    ax.text(4.95, 2.35, "+", fontsize=14, ha="center", va="center")
 
     # 关键关系式
     ax.text(0.25, 0.55, r"$z(t)=\sum_k b_k h(t-kT)+n(t)$，$n=n_j(\sigma_j,\sigma_a)+n_e(\sigma_e^2)$",
@@ -124,10 +123,9 @@ def draw_isi_peak(out_path: Path, *, quick: bool = False) -> Path:
     i_peak = np.argmax(total[mask])
     t_peak = t[mask][i_peak]
     ax1.plot([t_peak], [total[mask][i_peak]], "o", color="#b2182b", ms=6, zorder=6)
-    ax1.annotate(rf"$\Delta={t_peak - 0.0:+.1f}$ nm", xy=(t_peak, total[mask][i_peak]),
-                 xytext=(t_peak + 12, 0.72), fontsize=7, color="#b2182b",
+    ax1.annotate(rf"峰移 $\Delta={t_peak:.1f}$ nm" + "\n" + "峰值检测误判", xy=(t_peak, total[mask][i_peak]),
+                 xytext=(35, 0.80), fontsize=7, color="#b2182b",
                  arrowprops=dict(arrowstyle="-|>", lw=0.8, color="#b2182b"))
-    ax1.text(0.02 * PW50_NM, 0.35, "峰值检测把叠加峰\n误判为翻转位置", fontsize=7, color="#b2182b")
     ax1.set_xlabel("时间/位置 t / nm")
     ax1.set_ylabel("归一化读出电压")
     ax1.set_title(r"(a) $ND=T/\mathrm{PW}_{50}=1/3$：脉冲叠加与峰移", fontsize=9)
@@ -146,7 +144,7 @@ def draw_isi_peak(out_path: Path, *, quick: bool = False) -> Path:
         shifts.append(tt[m][ip])
     ax2.plot(nd, np.array(shifts) / PW50_NM, color="#b2182b", lw=1.8)
     ax2.axvline(1.0 / 3.0, color="gray", ls=":", lw=0.9)
-    ax2.text(1.0 / 3.0 + 0.03, 0.06, "ND=1/3", fontsize=7, color="gray")
+    ax2.text(1.0 / 3.0 + 0.03, -0.02, "ND=1/3", fontsize=7, color="gray")
     ax2.set_xlabel(r"归一化位周期 $ND=T/\mathrm{PW}_{50}$")
     ax2.set_ylabel(r"峰值位置偏移 $\Delta/\mathrm{PW}_{50}$")
     ax2.set_title("(b) ISI 引起的峰值位置偏移", fontsize=9)
@@ -159,42 +157,41 @@ def draw_read_channel(out_path: Path) -> Path:
     """图 5-11：读信道链路框图（前放→AC→VGA/AGC→TA→CTF→ADC→均衡→检测）。"""
     import matplotlib.pyplot as plt
 
-    fig, ax = plt.subplots(figsize=(7.6, 3.2))
+    fig, ax = plt.subplots(figsize=(7.6, 3.4))
     ax.set_xlim(0, 10)
-    ax.set_ylim(0, 6.2)
+    ax.set_ylim(0, 5.9)
     ax.axis("off")
 
     names = [
-        ("前放\n(LNA)", "低噪声\n增益"),
+        ("前放\n(LNA)", "低噪声增益"),
         ("AC 耦合\n(HPF)", "隔直/基线"),
         ("VGA/AGC", "增益控制"),
         ("TA", "定时捕获"),
-        ("CTF", "连续时间\n滤波"),
-        ("ADC", "量化"),
-        ("均衡", "PR 目标"),
-        ("检测", "PRML/\nViterbi"),
+        ("CTF", "连续时间滤波"),
+        ("ADC", "量化位数"),
+        ("均衡", "PR4/EPR4"),
+        ("检测", "PRML/Viterbi"),
     ]
     x0, w, gap = 0.25, 1.02, 0.16
     xs = [x0 + i * (w + gap) for i in range(len(names))]
     for i, (nm, spec) in enumerate(names):
-        _box(ax, xs[i], 3.9, w, 1.1, nm, fs=6.2)
-        ax.text(xs[i] + w / 2, 3.45, spec, ha="center", va="top", fontsize=5.4, color="#444444")
+        _box(ax, xs[i], 4.0, w, 1.05, nm, fs=6.2)
+        ax.text(xs[i] + w / 2, 5.18, spec, ha="center", va="bottom", fontsize=5.2, color="#444444")
         if i < len(names) - 1:
-            _arrow(ax, (xs[i] + w + 0.01, 4.45), (xs[i + 1] - 0.01, 4.45))
+            _arrow(ax, (xs[i] + w + 0.01, 4.52), (xs[i + 1] - 0.01, 4.52))
 
-    # AGC 控制环：ADC 之后回控 VGA
-    _arrow(ax, (xs[5] + w / 2, 3.9), (xs[2] + w / 2, 2.35), color="#d95f02", ls="--", rad=0.25)
-    ax.text((xs[2] + xs[5]) / 2, 2.05, "AGC 环（增益误差预算）", fontsize=5.8, color="#d95f02", ha="center")
-    # 定时恢复环：检测端回控 TA
-    _arrow(ax, (xs[7] + w / 2, 3.9), (xs[3] + w / 2, 1.35), color="#2ca02c", ls="--", rad=0.30)
-    ax.text((xs[3] + xs[7]) / 2, 1.05, "定时恢复环（TA 越早越好，否则失锁）", fontsize=5.8,
-            color="#2ca02c", ha="center")
+    # AGC 控制环：ADC 之后回控 VGA（虚线弧，走框图下方）
+    _arrow(ax, (xs[5] + w / 2, 4.0), (xs[2] + w / 2, 4.0), color="#d95f02", ls="--", lw=1.1, rad=-0.30)
+    ax.text(3.55, 3.05, "AGC 环（增益误差与 ADC 量化联合预算）",
+            fontsize=5.8, color="#d95f02", ha="center")
+    # 定时恢复环：检测端回控 TA（更深虚线弧）
+    _arrow(ax, (xs[7] + w / 2, 4.0), (xs[3] + w / 2, 4.0), color="#2ca02c", ls="--", lw=1.1, rad=-0.50)
+    ax.text((xs[3] + xs[7]) / 2, 1.95, "定时恢复环（TA 处理位置越早越好，否则定时环失锁）",
+            fontsize=5.8, color="#2ca02c", ha="center")
 
-    ax.text(0.25, 5.55, "读信道链路：前放→AC→VGA/AGC→TA→CTF→ADC→均衡→检测（式 5-20 的架构位置）",
-            fontsize=7)
-    ax.text(0.25, 0.45, "预算要点：ADC 量化噪声与均衡器联合预算；均衡置于 ADC 后加大定时环延迟；"
+    ax.text(0.25, 0.55, "预算要点：ADC 量化噪声与均衡器联合预算；均衡置于 ADC 后加大定时环延迟；"
                         "TA 处理位置决定定时环稳定性。", fontsize=6.2, color="#444444")
-    ax.set_title("读信道链路框图", fontsize=9)
+    ax.set_title("读信道链路框图（前放→AC→VGA/AGC→TA→CTF→ADC→均衡→检测）", fontsize=9)
     return plotting.save_figure(fig, out_path)
 
 

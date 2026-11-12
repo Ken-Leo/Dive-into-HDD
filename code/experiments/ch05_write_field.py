@@ -104,7 +104,7 @@ def draw_write_geometry(out_path: Path) -> Path:
     ax_l.add_patch(Rectangle((-240, -30), 480, 30, fc="#cfcfcf", ec="k", lw=0.8))
     ax_l.add_patch(Rectangle((-240, 0), 480, 40, fc="#e8d9b8", ec="k", lw=0.9))
     ax_l.text(-235, -16, "衬底", fontsize=8, va="center")
-    ax_l.text(-150, 33, r"介质膜（纵向，$M_r$）", fontsize=7.5, va="center")
+    ax_l.text(-235, 34, r"介质膜（纵向，$M_r$）", fontsize=7.5, va="center")
 
     # 磁头：左右极靴，中间 gW 间隙；ABS 在 y=70
     for x0 in (-130, 25):
@@ -140,13 +140,15 @@ def draw_write_geometry(out_path: Path) -> Path:
             FancyArrowPatch(start, end, connectionstyle=f"arc3,rad={rad}", arrowstyle="-|>",
                             mutation_scale=9, lw=1.1, color="#d95f02")
         )
-    ax_l.text(-118, 60, r"$H_a$（写场）", fontsize=8, color="#d95f02")
+    ax_l.text(-150, 62, r"$H_a$（写场）", fontsize=8, color="#d95f02",
+              bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=0.85))
     ax_l.annotate("", xy=(0, 44), xytext=(0, 68),
                   arrowprops=dict(arrowstyle="-|>", lw=1.0, color="#d95f02", ls="--"))
     ax_l.text(4, 56, r"$H_0>2H_c$", fontsize=7, color="#d95f02", va="center")
 
     # 翻转中心 x0
     ax_l.plot([0], [-10], marker="v", ms=5, color="#b2182b")
+    ax_l.plot([0, 0], [-12, -40], ls=":", lw=0.8, color="#b2182b")
     ax_l.text(0, -48, r"$x_0$（翻转中心）", fontsize=7, ha="center", color="#b2182b")
     _draw_triad(ax_l, -318, 128, 26)
 
@@ -186,7 +188,7 @@ def draw_write_geometry(out_path: Path) -> Path:
     ax_p.plot([0, 0], [0, 40], color="#b2182b", lw=2.4, zorder=5)
     for j in range(1, 6):
         ax_p.plot([-3.5, 3.5], [7.0 * j, 7.0 * j], color="#b2182b", lw=0.8, alpha=0.55)
-    ax_p.text(8, 36, "垂直翻转壁", fontsize=6.8, color="#b2182b", va="center")
+    ax_p.text(10, 45, "垂直翻转壁", fontsize=6.8, color="#b2182b", va="center")
 
     # 写场：主极 → 介质 → SUL → 屏蔽 的回路
     for xs, rad in ((-25, 0.22), (0, 0.0), (18, -0.22)):

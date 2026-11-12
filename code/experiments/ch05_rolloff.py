@@ -93,7 +93,8 @@ def draw_rolloff(out_path: Path, *, quick: bool = False) -> Path:
     d50_p = recording.d50_from_curve(x, perp)
     d50_d = recording.d50_from_curve(x, diff)
     ax2.plot(x, perp, "k-", lw=2.0, label="未微分 erf（式 5-9 近似）")
-    ax2.plot(x, diff, "--", lw=1.4, color="#ff7f0e", label="微分 Gaussian")
+    ax2.plot(x, diff, "--", lw=1.4, color="#ff7f0e",
+             label=rf"微分 Gaussian（$D_{{50}}d\mathrm{{PW}}_{{50}}\approx{d50_d:.2f}$）")
     ax2.axhline(0.5, color="gray", lw=0.6, ls=":")
     ax2.axvline(D50_BOOK_P, color="#b2182b", lw=1.0, ls="--")
     ax2.text(D50_BOOK_P + 0.04, 0.92, rf"$D_{{50}}d\mathrm{{PW}}_{{50}}=1.02$（教材）" "\n"
@@ -105,8 +106,6 @@ def draw_rolloff(out_path: Path, *, quick: bool = False) -> Path:
     ax2.set_title("(b) 垂直记录 roll-off 与微分脉冲对照", fontsize=9)
     ax2.legend(fontsize=6.5, loc="lower left")
     ax2.grid(alpha=0.3)
-    ax2.text(1.55, 0.25, rf"微分 Gaussian：$D_{{50}}d\mathrm{{PW}}_{{50}}\approx{d50_d:.2f}$",
-             fontsize=6.8, color="#ff7f0e")
 
     d50["perp"] = d50_p
     d50["perp_diff"] = d50_d
