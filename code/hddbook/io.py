@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -66,6 +67,31 @@ def write_csv(path: str | Path, header: list[str], rows: list[list]) -> Path:
     return out
 
 
+def manifest_path() -> Path:
+    """Return the manifest path to write.
+
+    ``HDDBOOK_MANIFEST`` overrides the repository manifest (used by the smoke
+    tests so that a pytest run never rewrites ``figures/manifest.yaml``).
+    """
+    override = os.environ.get("HDDBOOK_MANIFEST")
+    if override:
+        return Path(override)
+    return config.FIG_DIR / "manifest.yaml"
+
+
+def repo_relative(path: str | Path) -> str:
+    """Return ``path`` relative to the repository root when possible.
+
+    Paths outside the repository (e.g. pytest ``tmp_path``) are returned as
+    absolute strings instead of raising ``ValueError``.
+    """
+    p = Path(path)
+    try:
+        return str(p.resolve().relative_to(config.REPO_ROOT))
+    except ValueError:
+        return str(p)
+
+
 def record_figure(
     figure_id: str,
     *,
@@ -84,11 +110,11 @@ def record_figure(
     The manifest is the single source of truth linking a book figure to the
     script that reproduces it; ``output_sha256`` is filled automatically.
     """
-    manifest_path = config.FIG_DIR / "manifest.yaml"
-    config.ensure_dir(manifest_path.parent)
+    manifest_file = manifest_path()
+    config.ensure_dir(manifest_file.parent)
     entries = []
-    if manifest_path.exists():
-        with open(manifest_path, encoding="utf-8") as fh:
+    if manifest_file.exists():
+        with open(manifest_file, encoding="utf-8") as fh:
             entries = yaml.safe_load(fh) or []
     out = Path(output)
     entry = {
@@ -99,7 +125,7 @@ def record_figure(
         "script": script,
         "command": command,
         "data": None,
-        "output": str(out.relative_to(config.REPO_ROOT)),
+        "output": repo_relative(out),
         "output_sha256": sha256(out) if out.exists() else None,
         "source": source,
         "license": license,
@@ -108,5 +134,5 @@ def record_figure(
     entries = [e for e in entries if e.get("figure_id") != figure_id]
     entries.append(entry)
     entries.sort(key=lambda e: (e.get("chapter", 0), e.get("figure_id", "")))
-    with open(manifest_path, "w", encoding="utf-8") as fh:
+    with open(manifest_file, "w", encoding="utf-8") as fh:
         yaml.safe_dump(entries, fh, allow_unicode=True, sort_keys=False)

@@ -34,6 +34,10 @@ def apply_style() -> None:
             "figure.dpi": 120,
             "savefig.dpi": 300,
             "savefig.bbox": "tight",
+            "savefig.transparent": False,
+            "figure.facecolor": "white",
+            "savefig.facecolor": "white",
+            "axes.facecolor": "white",
             "axes.grid": True,
             "grid.alpha": 0.3,
             "lines.linewidth": 1.4,
@@ -50,3 +54,28 @@ def save_figure(fig, out_path: str | Path, *, pdf: bool = True) -> Path:
         fig.savefig(out.with_suffix(".pdf"))
     plt.close(fig)
     return out
+
+
+def plain_log_axis(ax, axis: str = "both") -> None:
+    """把对数轴的刻度标签改为普通十进制数字。
+
+    matplotlib 对数轴默认用 ``$\\mathdefault{10^{-4}}$`` 形式的刻度标签，
+    该标签走 ``\\mathdefault`` 字体（即 font.family 指定的中文字体）；而
+    Hiragino Sans GB 等中文字体缺少 U+2212（数学减号），会在刻度上留下方框。
+    本函数用纯文本 formatter 规避该问题，保证图件无缺字。
+    """
+    from matplotlib.ticker import FuncFormatter, NullFormatter
+
+    def _fmt(v, _pos):
+        if v >= 1.0:
+            return f"{v:g}"
+        s = f"{v:.6f}".rstrip("0").rstrip(".")
+        return s if s else "0"
+
+    fmt = FuncFormatter(_fmt)
+    if axis in ("x", "both"):
+        ax.xaxis.set_major_formatter(fmt)
+        ax.xaxis.set_minor_formatter(NullFormatter())
+    if axis in ("y", "both"):
+        ax.yaxis.set_major_formatter(fmt)
+        ax.yaxis.set_minor_formatter(NullFormatter())

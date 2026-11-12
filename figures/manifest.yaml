@@ -1,12 +1,144 @@
+- figure_id: fig:5-1
+  chapter: 5
+  section: 5.2.1
+  title: 纵向/垂直记录写场几何、锯齿形翻转壁与坐标系（d、t、s、SUL）
+  script: code/experiments/ch05_write_field.py
+  command: python code/experiments/ch05_write_field.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-01-write-geometry.png
+  output_sha256: 4a34581407e1e94a279a28b19b44ef316368a7bbdf66cf00e4ab4df040a64aef
+  source: 原创重绘（据编码书 Ch2 图2.2/2.3 的几何关系；式 5-1/5-5）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-10
+  chapter: 5
+  section: 5.7.2
+  title: ND=1/3 时相邻翻转脉冲叠加、ISI 与峰值检测误判
+  script: code/experiments/ch05_channel_sim.py
+  command: python code/experiments/ch05_channel_sim.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-10-isi-peak-detect.png
+  output_sha256: 003464692ab8e7f5cff3988489df4327523ade0ed9683c6ce2cd1d54de3becee
+  source: 原创计算（重绘 Piya Ch6 图6.22/6.38 的 ISI 与峰移）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-11
+  chapter: 5
+  section: 5.7.3
+  title: 读信道链路框图（前放→AC→VGA/AGC→TA→CTF→ADC→均衡→检测）
+  script: code/experiments/ch05_channel_sim.py
+  command: python code/experiments/ch05_channel_sim.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-11-read-channel.png
+  output_sha256: 79fe1a902bb4ac46bff029d0660824f6d09d86dd109d71127fe135913975a54a
+  source: 原创重绘（据 Piya Ch6 图6.24 的读信道架构）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-12
+  chapter: 5
+  section: 5.7.4
+  title: 均衡前后样本星座（ND=0.5/2.5，PR4 目标）
+  script: code/experiments/ch05_channel_sim.py
+  command: python code/experiments/ch05_channel_sim.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-12-equalized-scatter.png
+  output_sha256: 4d632b056ef4bb4930e33890840b72090b2d54b7b943d69f0447239473a207d4
+  source: 原创仿真（重绘 Piya Ch6 图6.29/6.30 的均衡前后星座）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-2
+  chapter: 5
+  section: 5.2.1
+  title: Karlqvist 写场等值线与道内场梯度（gW=0.2 μm，H0/Hc 扫描）
+  script: code/experiments/ch05_write_field.py
+  command: python code/experiments/ch05_write_field.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-02-karlqvist-field.png
+  output_sha256: 00ab3515e0b732a136856fa1f82d0b5a225475b774443e6d33326d8b4c06592c
+  source: 原创计算（式 5-1/5-5；Karlqvist 1954）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-3
+  chapter: 5
+  section: 5.2.2
+  title: 磁滞回线族与翻转参数 a 随 H0/Hc、Mr·t、⟨D⟩ 的变化
+  script: code/experiments/ch05_write_field.py
+  command: python code/experiments/ch05_write_field.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-03-hysteresis-a.png
+  output_sha256: 107ce62255b767e38dbeb9f6251842a97a944600064f618bc385b9bc32fcee6e
+  source: 原创计算（式 5-2/5-4；改编自编码书 Ch2 图2.4 与式 2.14/2.15）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-4
+  chapter: 5
+  section: 5.3.1
+  title: 互易原理读出几何与 Φ(k) 势函数链
+  script: code/experiments/ch05_pulse_shape.py
+  command: python code/experiments/ch05_pulse_shape.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-04-reciprocity.png
+  output_sha256: 89ad37d6f34e5091405adbd8bf0b5100f471e80c5dfab0ae8831ebf8a08064a5
+  source: 原创重绘（据编码书 Ch2 §2.3 互易原理与式 2.22–2.27）
+  license: CC BY 4.0（原创）
+  status: draft
 - figure_id: fig:5-5
   chapter: 5
-  section: '5.3'
-  title: 纵向/垂直孤立重放脉冲及其幅度谱（PW50 依赖）
+  section: 5.3.2
+  title: 纵向精确积分 vs Lorentz/Gauss/Voigt（η=0.43）与垂直 erf/Gaussian 对照
   script: code/experiments/ch05_pulse_shape.py
-  command: python code/experiments/ch05_pulse_shape.py --out figures/ch05/fig05-05-pulse-shape.png
+  command: python code/experiments/ch05_pulse_shape.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-05-pulse-shape.png
-  output_sha256: 7cb78059dfb1f00631f646581920b52c9d6d00a1fb04cad3bcfda5525789f654
-  source: 原创（Lorentz/Gaussian 教科书模型；参考编码书 Ch2 图2.5 的重绘思路）
+  output_sha256: 14f737117a8a09287281178f1ced61e5940abcc022baf3a475ae2d5e4a187a3f
+  source: 原创计算（式 5-7；重绘编码书 Ch2 图2.5 与式 2.30/2.36）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-6
+  chapter: 5
+  section: 5.3.3
+  title: roll-off 曲线与 D50 标注（纵向 1.46、垂直 1.02）
+  script: code/experiments/ch05_rolloff.py
+  command: python code/experiments/ch05_rolloff.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-06-rolloff.png
+  output_sha256: c03356811b3da3fb8acb927942b141910cc51d7c3b4e0a1b1c00368148f5fa98
+  source: 原创计算（式 5-9；重绘编码书 Ch2 图2.7 与式 2.43/2.45）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-7
+  chapter: 5
+  section: 5.4.1
+  title: 介质噪声谱分解（DC 剩磁/翻转/总噪声）
+  script: code/experiments/ch05_media_noise.py
+  command: python code/experiments/ch05_media_noise.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-07-media-noise.png
+  output_sha256: 15f1f1c68edf2dad9f547321c09095f4c6666ad1c09c2b1bbe1ab64ff6564179
+  source: 原创计算（式 5-11/5-12；据编码书 Ch2 §2.4.1 的噪声谱分解）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-8
+  chapter: 5
+  section: 5.5.1
+  title: 信道模型框图：PAM 差分信道 + 1PW/2PW 抖动噪声 + AWGN
+  script: code/experiments/ch05_channel_sim.py
+  command: python code/experiments/ch05_channel_sim.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-08-channel-model.png
+  output_sha256: 427c6cb436a80b04b10aa42242bb95350de15bf07276e15a832d4dc228757038
+  source: 原创重绘（改编自编码书 Ch5 图5.4 与式 5-15/5-16）
+  license: CC BY 4.0（原创）
+  status: draft
+- figure_id: fig:5-9
+  chapter: 5
+  section: 5.6.3
+  title: 仿真器流程：直接法/间接法分支与梯度标定回路
+  script: code/experiments/ch05_snr_calib.py
+  command: python code/experiments/ch05_snr_calib.py --out figures/ch05
+  data: null
+  output: figures/ch05/fig05-09-simulator-flow.png
+  output_sha256: 3f81eaa23e17d56ab5fe7337af68ae285430ff510159eb90bc6575cf248f4d39
+  source: 原创重绘（改编自编码书 Ch6 图6.9/6.13 的仿真流程与式 6.42–6.46）
   license: CC BY 4.0（原创）
   status: draft
