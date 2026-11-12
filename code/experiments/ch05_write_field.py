@@ -227,7 +227,8 @@ def draw_karlqvist(out_path: Path, *, quick: bool = False) -> Path:
     cb.ax.set_title(r"$H_x/H_c$", fontsize=8, pad=4)
     x0 = recording.transition_position(H0_OVER_HC, GW_NM, GAMMA_NM)
     ax1.axhline(GAMMA_NM, color="w", ls="--", lw=1.0)
-    ax1.text(-315, GAMMA_NM + 10, r"$\gamma=d+t/2$", color="w", fontsize=8)
+    ax1.text(-312, GAMMA_NM + 12, r"$\gamma=d+t/2$", color="k", fontsize=7.5,
+             bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=0.85))
     ax1.plot([x0], [GAMMA_NM], marker="o", ms=6, mfc="white", mec="#b2182b", mew=1.5, zorder=6)
     ax1.annotate(r"$x_0$", xy=(x0, GAMMA_NM), xytext=(x0 + 55, GAMMA_NM + 55),
                  color="w", fontsize=8, arrowprops=dict(arrowstyle="-|>", color="w", lw=0.9))
@@ -280,7 +281,6 @@ def draw_hysteresis_and_a(out_path: Path, *, quick: bool = False) -> Path:
         ax1.plot(h / HC_OE, down, color=col, lw=1.2, ls="--")
         # 标注 H=0 处的剩磁（±Mr/Ms）与 M=0 处的矫顽场（±Hc）
         ax1.plot([0.0, 0.0], [mr, -mr], "o", color=col, ms=3.2, zorder=5)
-        ax1.plot([-1.0, 1.0], [0.0, 0.0], "s", color=col, ms=3.2, zorder=5)
     ax1.axhline(0, color="k", lw=0.5)
     ax1.axvline(0, color="k", lw=0.5)
     ax1.set_xlim(-2.2, 2.2)

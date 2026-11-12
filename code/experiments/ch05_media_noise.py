@@ -75,7 +75,7 @@ def draw_media_noise(out_path: Path, *, quick: bool = False) -> Path:
     ax1.loglog(kx, np.maximum(tr / norm, 1e-6), color="#d95f02", lw=1.5, label=r"翻转分量（式 5-12）")
     ax1.loglog(kx, np.maximum(total / norm, 1e-6), color="k", lw=1.8, label="总噪声")
     ax1.axvline(np.pi, color="gray", ls=":", lw=0.8)
-    ax1.text(np.pi * 1.04, 0.02, r"$k=\pi/\mathrm{PW}_{50}$", fontsize=6.5, color="gray", rotation=90, va="bottom")
+    ax1.text(np.pi * 1.02, 1.25, r"$k=\pi/\mathrm{PW}_{50}$", fontsize=6.5, color="gray", va="bottom")
     ax1.set_xlabel(r"归一化波数 $k\cdot\mathrm{PW}_{50}$")
     ax1.set_ylabel("归一化噪声 PSD / (a.u.)")
     ax1.set_title("(a) 介质噪声谱分解（纵向，$M_r/M_s=0.8$）", fontsize=9)

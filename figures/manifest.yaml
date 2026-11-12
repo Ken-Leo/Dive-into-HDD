@@ -54,7 +54,7 @@
   command: python code/experiments/ch05_write_field.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-02-karlqvist-field.png
-  output_sha256: 00ab3515e0b732a136856fa1f82d0b5a225475b774443e6d33326d8b4c06592c
+  output_sha256: 94efdf277324f85e0320b6ca5de432b199a54d21bb397dc3fe49d49fa9260c11
   source: 原创计算（式 5-1/5-5；Karlqvist 1954）
   license: CC BY 4.0（原创）
   status: draft
@@ -66,7 +66,7 @@
   command: python code/experiments/ch05_write_field.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-03-hysteresis-a.png
-  output_sha256: 107ce62255b767e38dbeb9f6251842a97a944600064f618bc385b9bc32fcee6e
+  output_sha256: 8abfe45b95d3eb35c497d9ad17f274b7b5c6b2b6b2fadeea251926f19dfc0ffe
   source: 原创计算（式 5-2/5-4；改编自编码书 Ch2 图2.4 与式 2.14/2.15）
   license: CC BY 4.0（原创）
   status: draft
@@ -114,7 +114,7 @@
   command: python code/experiments/ch05_media_noise.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-07-media-noise.png
-  output_sha256: 411b2a6b42ef61a8e8bf4a8acd87ac5684514b5d71f04dc0dcd8dadb9f24a242
+  output_sha256: ee3f6c766ed86027f13444a0768f87a775f3de4e7b76ef5c8ec1dc2b8e236f19
   source: 原创计算（式 5-11/5-12；据编码书 Ch2 §2.4.1 的噪声谱分解）
   license: CC BY 4.0（原创）
   status: draft
