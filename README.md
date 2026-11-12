@@ -94,7 +94,7 @@ python3 tools/check_docs.py      # 一致性检查
 ```bibtex
 @book{luoke2023,
     title={深入浅出HDD},
-    author={罗可 and 陈进才 and 卢萍},
+    author={罗可},
     note={\url{https://github.com/Ken-Leo/Dive-into-HDD}},
     year={2023}
 }
