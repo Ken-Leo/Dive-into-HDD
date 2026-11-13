@@ -12,13 +12,15 @@
 | [独立评审意见](plan/plan-review.md) | 对提纲结构与实施可行性的独立评审（阻断项/重要项/建议项） |
 | [素材核验](plan/material-audit.md) | 逐章素材落点核验、汉字/图数统计、素材充足度与扩写倍率 |
 | [知识资产总图](plan/knowledge-assets.md) | 译稿/知识库/论文库/实验项目/报告/实测数据的资产地图、章节映射、使用规程与合规风险 |
-| [实验资产清单](plan/experiment-inventory.md) | 16 个本地实验/代码项目的用途、入口、测试、许可与移植评估 |
+| [实验资产清单](plan/experiment-inventory.md) | 17 个本地实验/代码项目的用途、入口、测试、许可与移植评估 |
 | [知识库核验](plan/knowledge-base-inventory.md) | OpenKnowledgeBase 检索链、References 分类、IEEEtran 自著论文、项目报告与数据可用性 |
 | [实验与代码体系](plan/experiments.md) | 章节实验矩阵、代码架构、复现验收标准、迁移计划、版权处置 |
 | [文档与资产管理规范](plan/document-management.md) | 目录/命名/元数据/台账/图-代码映射/审校/版本管理规范 |
 | [排版与构建方案](plan/typesetting.md) | ElegantBook 4.7 最终模板、16 开版式、Markdown→LaTeX→PDF 构建管线、编号/引用/图件规范与排版门禁 |
 | [资产台账](plan/asset-registry.csv) | 资产逐条台账（类型/路径/许可/章号/用法/状态/风险） |
 | [第 5 章详细大纲（样章）](plan/ch05-outline.md) | 样章节/小节结构、公式/图/习题/文献清单、素材落点与仿真设计 |
+| [定时恢复资产包](plan/assets-timing-recovery.md) | Rice 数字通信译本（Ch8/附录 C）、MATLAB 参考实现与 PSP 的资产清单、勘误协议、术语映射与第 8 章骨架 |
+| [Rice 译本勘误登记](plan/errata-digital-communications.md) | 已确认勘误 E-01~E-06、待核项 V-01~V-06 与写作红线 |
 | [章节写作模板](templates/chapter-template.md) | 统一章节结构、写作标记、交付前自检清单 |
 | [排版模板（ElegantBook 4.7）](templates/ElegantBook-4.7/README.md) | LaTeX 书籍排版模板（ElegantBook），用于后期排版与 PDF 生成 |
 | [实验与代码库](../code/README.md) | 共享库 `hddbook/`、章节实验脚本、测试与数据规范 |

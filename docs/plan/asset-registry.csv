@@ -30,3 +30,5 @@ EXP-13,experiment,/Volumes/Elements/PRML-dynamicNLTS,动态 NLTS 建模与写前
 EXP-14,experiment,/Volumes/Elements/Read_Channel_Model_250822 - reduced,双层/3D 多采样读通道（MATLAB）,作者自有,"未声明；纯 MATLAB，仅参考/数据",5;16,data,partial,high,罗可,2026-11-11
 EXP-15,experiment,/Volumes/Elements/MyPy/ModelTraining221104,NN 均衡/检测模型训练（Keras notebook）,作者自有,"未声明；仅 notebook+h5",7,reference,partial,high,罗可,2026-11-11
 EXP-16,experiment,/Volumes/Elements/HDDGroup2025/HAMR-Code-S1,HAMR 粒度级写入/回读仿真交付件,华为项目,"未声明；硬编码输出路径",16,experiment,partial,high,罗可,2026-11-11
+TR-07,translation,/Volumes/Elements/TranslationBooks/digital_communications,Rice《数字通信：离散时间方法》中英对照译稿（Ch8 符号定时同步、附录 C 锁相环）,"Michael Rice 原著；自译（Qwen3.8-Flash-Next）","原书 © Michael Rice；译本 CC BY-NC-ND 4.0；须按勘误协议使用",5;7;8,theory,available,medium,罗可,2026-11-13
+EXP-17,experiment,/Users/kenleo/Documents/References/Timing Recovery/PLL/symbol_timing_sync-master,MATLAB 符号定时恢复仿真器（Rice 第 8 章参考实现）,Igor Freire；基于 Rice 第 8 章,"未声明（无 LICENSE）；依赖 MATLAB Communications Toolbox",8,reference,partial,medium,罗可,2026-11-13

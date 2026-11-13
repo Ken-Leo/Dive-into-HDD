@@ -9,7 +9,7 @@
 
 | 类别 | 资产 | 规模 | 对本书的价值 | 优先级 |
 |------|------|------|--------------|--------|
-| 书籍译稿 | Piya 三卷本、编码与信号处理、HDD 机电控制、伺服系统（7 套） | 68.7 万汉字、2,279 图 | 全书理论主干与章节骨架（全文翻译，需裁剪/改写） | P0 |
+| 书籍译稿 | Piya 三卷本、编码与信号处理、HDD 机电控制、伺服系统、Rice 数字通信（8 套） | 88.0 万汉字（其中 Rice 译本 19.3 万汉字、2,813 图）、5,092 图 | 全书理论主干与章节骨架（全文翻译，需裁剪/改写；Rice 译本须按勘误协议使用） | P0 |
 | 知识库 | OpenKnowledgeBase（wiki + kb_index + graph + References） | 21 GB；10,171 篇论文、9,481 概念、32,132 实体 | 第 16/18 章前沿、全书文献与证据链 | P0 |
 | 论文库 | /Volumes/Elements/References | 53 GB；11,426 PDF、222 类别 | 文献、图源、综述；HAMR/TDMR/BPMR/TMRC 等 | P0 |
 | 自著论文 | /Volumes/Elements/IEEEtran | 431 PDF；可正式引用约 10 篇 | 第 5/7/16/17 章的一手结论与图 | P0 |
@@ -43,7 +43,7 @@
 | 5 记录物理/信道 | CSP2/5/6、V1ch6 | References 读信道/介质噪声；IEEEtran NLTS 论文 | exp:5-1~5-5；PRBS5 实测冲激；dibit | 实测数据标「本实验室实测」 |
 | 6 均衡 | CSP8、V2ch3、V1ch5.6 | References 均衡/PRML；IEEEtran NN 均衡 | exp:6-1~6-3；PRML-Explore、TDMR_RCP_MMSE、ABCForDisc | 算法引用原始论文 |
 | 7 检测 | CSP32/33、V2ch4–7、V3ch3 | References 检测/PRML；IEEEtran NN 检测 | exp:7-1~7-3；PRML-Explore、RSI4HDD、pytdmr | 对拍结果作验证 |
-| 8 定时 | V2ch2、CSP26/27 | References 定时恢复；PSP docs 论文 | exp:8-1~8-2；PSP、RSI4HDD timing | 引用 ITR/OPSP 原始论文 |
+| 8 定时 | V2ch2、CSP26/27、**Rice Ch8 + 附录 C**（需勘误，见 [定时恢复资产包](assets-timing-recovery.md)） | References 定时恢复；PSP docs 论文；Kovintavewat 2003/2012 | exp:8-1~8-2；PSP、RSI4HDD timing、MATLAB symbol_timing_sync（对拍） | 引用 ITR/OPSP 原始论文；Rice 书按原书页码引用 |
 | 9 伺服机构 | MECH2/3、SERVO2–7 | References 伺服/PES/STW | exp:9-1~9-2（新写 servo） | 机电控制教材 + 论文 |
 | 10 主轴/STW | MECH4/5 | References 伺服写入 | exp:10-1~10-2（新写） | 工程参数标来源 |
 | 11 双级执行器 | SERVO8–11 | References 双级/微驱动 | exp:11-1（新写） | 基准问题引用原文 |
@@ -63,6 +63,7 @@
 - 入口：`material-audit.md` 查每章素材充足度与倍率；按「过剩章裁剪、偏薄章扩写」执行。
 - 使用：改写为教学叙述，禁止整段照搬；公式清洗 OCR 伪影后复核；图全部重绘。
 - 版权：Piya/CRC Press/Springer；前言声明「编译/改写自」，二手译稿不作学术引用。
+- **Rice 数字通信译本（TR-07）特别规程**：公式与 `\tag` 逐字节保留（Ch8 138/138、附录 C 70/70），但正文措辞、术语与脚注编号有残留错误；使用前按 [定时恢复资产包](assets-timing-recovery.md) 第三节做三源交叉，并在 [勘误登记](errata-digital-communications.md) 逐条留痕。该译本为 CC BY-NC-ND 4.0，不得整段照搬。
 
 ### 4.2 OpenKnowledgeBase（文献与证据）
 ```bash
@@ -112,7 +113,7 @@ python3 scripts/kb cite <id> --format bibtex
 |------|----------|------|
 | 华为 NDA 数据 | HDDGroup2025、TapeGroup2025、HDDTapeGroup | 建立「可公开/需确认/不可公开」清单；图重绘或标「本实验室实测」 |
 | IEEE/厂商图版权 | References、IEEEtran、译稿图 | 全部重绘；图 license 台账；必要时申请 permission |
-| 译稿版权 | 7 套译稿 | 前言声明；改写不照搬；不作学术引用 |
+| 译稿版权 | 8 套译稿（含 Rice CC BY-NC-ND 4.0） | 前言声明；改写不照搬；不作学术引用；Rice 译本另建勘误登记 |
 | 知识库数字过期 | OpenKB README | 用 Home.md/实测数字；引用规模注明日期 |
 | 数据无效 | 500gHDD zip 全零 | 改用 1030-500Gb/RAR；入库前校验 SHA256 |
 | 概念假命中 | MAMR tag | 用大小写敏感检索 + 人工核对 |
@@ -129,6 +130,7 @@ python3 scripts/kb cite <id> --format bibtex
 3. 出「华为/NDA 数据引用确认清单」：列出拟使用的图/数据/结论，交作者确认公开范围。
 4. 校验实测数据：1030-500Gb CSV 可读性、PRBS5 冲激响应完整性；剔除全零 zip。
 5. 第 5 章素材包：按矩阵取 CSP2/5/6、V1ch6、PRBS5、dibit，标注每条论断的证据来源。
+6. 第 8 章素材包：Rice Ch8 + 附录 C（按勘误协议）、MATLAB `symbol_timing_sync` 对拍值、PSP 的 ITR/OPSP 代码与论文；先登记 V-01~V-06 待核项。
 
 **P1（两周内）**
 6. OpenKB 检索 SOP 固化：主题→论文→证据→bibtex→DOI 核验，写入 `docs/plan/kb-sop.md`。

@@ -24,6 +24,7 @@
 | 14 | `/Volumes/Elements/MyPy/SYNCDEMO` | 实测 HDD 读写信号同步/伺服段检测/写读数据检测与 PSP 定时：现行层 `analysis/`+`syncutils/psp_detect.py`，冻结层为 2026-07 旧管线（docs/CODE_MAP.md） | Python3（pytest.ini、tests/） | `python -m analysis.run_analysis`（`main.py` 头注释已 DEPRECATED） | `analysis/`（61 文件/12.8k 行）、`syncutils/psp_detect.py`、`analysis/gt/g0_legacy.py`、`Code/Encoder8_9_*.py` | 输入：10 GSa/s aligned CSV（servo/read 段）、`data/`；产物 `analysis/out/reports/*.md` 13 份；τ-Joint 4.3683%、p_ref 2.65e-5 等指标 | `tests/`+pytest.ini；docs 固定口径 reference_version `gt_v2@aeb2f3d` | 无 README（CODE_MAP.md 为阅读指南）；无 LICENSE（未声明） |
 | 15 | `/Volumes/Elements/MyPy/ModelTraining221104` | NN 均衡/检测模型训练（Keras）：`my_classes.py`+两个 notebook+`my_model.h5`/`full_model.h5` | Python+Keras/TensorFlow（版本未锁定，仅 .h5 权重） | 交互式：`modelTrain.ipynb`、`model-keras.ipynb` | `my_classes.py`、`modelTrain.ipynb`、`model-keras.ipynb`、`my_model.h5`、`full_model.h5` | 输入：notebook 内路径指向外部生成训练集；产物 .h5 权重 | 无 tests；无 seed 声明 | 无 README/LICENSE（未声明） |
 | 16 | `/Volumes/Elements/HDDGroup2025/HAMR-Code-S1`、`.../HAMR-Code-S2` | HAMR 完整仿真交付件：数据编码（8/9 086 等多版本）→粒度级写入+激光热辅助噪声→AWGN→PRML 检测→BER；S2/SYNC 为读通道类与同步函数库（`交付件/代码说明书.md`） | Python3（numpy/scipy/matplotlib，无 requirements） | S1：`cd HAMR-Code-S1/hamrs1 && python main.py`；S2：`SYNC/read_mode2.py`、`syncFunction.py`（类/函数库） | S1 `hamrs1/{Code/Encoder8_9_086.py,Readback/readmain.py,addnoise,Detection/mainDetection.py,MMSE_0812.py,prml.py}`；S2 `SYNC/{read_mode2.py,syncFunction.py,syni.py}` | 输入 `data/offset`、`encodeddata_8_9_086_001.csv`；输出 `/data/dYYYYMMDD-HHMMSS/` 时间戳目录 | 无 tests；说明书标 seed=42、SNR 8–28 步长 4 | 无 LICENSE（未声明）；说明书日期 2025-11-13 |
+| 17 | `/Users/kenleo/Documents/References/Timing Recovery/PLL/symbol_timing_sync-master` | Rice 第 8 章符号定时恢复仿真器：脉冲成形 PAM/QAM+AWGN+定时恢复环（TED+插值+PI 控制器+NCO）；支持 MLTED/ELTED/ZCTED/GTED/MMTED 与多相/线性/二次/三次插值（README、main.m 参数表） | MATLAB（依赖 Communications Toolbox：`comm.RaisedCosineTransmitFilter`、`comm.SymbolSynchronizer`）；11 个 `.m` + 1 个 `.mlx` | `main.m`（MATLAB 命令行运行，参数在文件头） | `symbolTimingSync.m`（TED+插值+环路）、`calcSCurve.m`/`simSCurve.m`（S 曲线）、`calcTedKp.m`/`plotTedGain.m`（$K_p$）、`piLoopConstants.m`（环路常数）、`polyInterpFilt.m`/`polyDecomp.m`（多相插值）、`derivativeMf.m`（微分匹配滤波）、`genTestVector.m`（对拍向量） | 输入：程序生成；产物：MATLAB 图窗与工作区变量（无落盘 CSV） | 无 tests；`experiments.md` 给出 L=2/8、100 ppm 频偏实验步骤与 MER 结论 | 作者 Igor Freire；无 LICENSE（未声明）；依赖 MATLAB 专有 toolbox |
 
 ## 二、移植评估表（章号对照 book-outline.md；复用方式四档：直接移植/改写/仅参考/仅数据）
 
@@ -45,6 +46,7 @@
 | 14 | MyPy/SYNCDEMO | 第 8 章定时/PSP、第 15 章伺服信号处理与位置估计；附录 C 实验「实测信号同步与伺服段检测」 | 仅数据+仅参考 | 2–3 | 高：92k 行中 78k 为冻结层；需 10 GSa/s aligned CSV（大文件不入库）；口径 gt_v2/p_ref 须绑定 |
 | 15 | MyPy/ModelTraining221104 | 第 7 章机器学习检测（ML）；附录 C 实验「NN 检测器训练」 | 仅参考 | 2 | 高：仅 notebook+h5，无脚本/tests/环境锁定，TF/Keras 版本漂移 |
 | 16 | HDDGroup2025 HAMR-Code-S1/S2 | 第 16 章 HAMR 写入与热噪声、第 15 章同步；附录 C 实验「HAMR 粒度写入 BER」 | 改写 | 3 | 高：硬编码 `/data/dYYYYMMDD-HHMMSS` 输出路径；编码器 5 个版本（035/036/044/0812/086）无统一接口；无 tests |
+| 17 | symbol_timing_sync（MATLAB） | 第 8 章 TED/S 曲线/环路常数/插值阶数；附录 C 环路设计对拍 | 仅参考+数值对拍 | 1 | 中：MATLAB 专有 toolbox；无 LICENSE；无落盘数据，需重跑取数 |
 
 ## 三、优先移植清单（≤10，按可移植性/测试覆盖/与附录 C 的匹配度排序）
 
@@ -72,8 +74,8 @@
 
 ## 五、结论（简短）
 
-- 13 组必查资产全部存在，另拆出 MyPy 4 个相关子项目，共 16 项；其中 **8 项已有可运行 Python 实现**（RLL/RSI4HDD/PRML-Explore/PSP/HamrSimulator-py/TDMR-py/pytdmr/BD_Sim），**6 项带测试或 MATLAB 对拍**（RLL 28 项、RSI4HDD 18 passed、PRML-Explore 测试套件、PSP 11 文件、HamrSimulator-py 241 tests、pytdmr 14 PASS+P1/P2/P3 对拍），构成附录 C 12 个核心实验的主力代码来源；3 项需改写（PRMLpro 算法层、ABCForDisc-py、HAMR-Code-S1/S2），2 项仅数据/仅参考（250822、SYNCDEMO），其余仅参考。
-- **许可风险是首要问题**：16 项中仅 PSP 与 HamrSimulator/python_receiver 明确 Apache-2.0，其余 14 项均「未声明」；代码入书仓前须作者书面授权或在附录 C 标注「作者授权/改编自」。
+- 13 组必查资产全部存在，另拆出 MyPy 4 个相关子项目与 Rice 第 8 章 MATLAB 参考实现，共 17 项；其中 **8 项已有可运行 Python 实现**（RLL/RSI4HDD/PRML-Explore/PSP/HamrSimulator-py/TDMR-py/pytdmr/BD_Sim），**6 项带测试或 MATLAB 对拍**（RLL 28 项、RSI4HDD 18 passed、PRML-Explore 测试套件、PSP 11 文件、HamrSimulator-py 241 tests、pytdmr 14 PASS+P1/P2/P3 对拍），构成附录 C 12 个核心实验的主力代码来源；3 项需改写（PRMLpro 算法层、ABCForDisc-py、HAMR-Code-S1/S2），2 项仅数据/仅参考（250822、SYNCDEMO），其余仅参考。
+- **许可风险是首要问题**：17 项中仅 PSP 与 HamrSimulator/python_receiver 明确 Apache-2.0，其余 15 项（含 symbol_timing_sync）均「未声明」；代码入书仓前须作者书面授权或在附录 C 标注「作者授权/改编自」。
 - **依赖风险集中在三类**：① 硬编码解释器路径（RSI4HDD、PRML-Explore 的 `py39_bd_sim`）；② MATLAB 专有 toolbox/parpool（dynamicNLTS、250822、ABCForDisc、190412、TDMR 主链）；③ 缺失/超大外部数据（190412 的 `d2019*` 批次、250822 的 `restore/`、SYNCDEMO 的 10 GSa/s CSV）。
 - **门禁对齐**：建议附录 C 每个实验固定「脚本+参数+预期结果+固定 seed」四件套（门禁第 5 项），并优先采用已带 tests 的 8 项以降低第 12 项「仿真题有对应代码」的返工。
 - 工作量汇总：直接移植 8 项约 7–10 人日，改写 3 项约 7–8 人日，仅参考/仅数据不计入；全部 12 个核心实验预计 15–20 人日，低于 plan-review B5 中「全量 30–60 脚本 90–300 人日」的估算。
