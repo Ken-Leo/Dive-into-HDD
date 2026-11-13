@@ -19,6 +19,8 @@
 | [排版与构建方案](plan/typesetting.md) | ElegantBook 4.7 最终模板、16 开版式、Markdown→LaTeX→PDF 构建管线、编号/引用/图件规范与排版门禁 |
 | [资产台账](plan/asset-registry.csv) | 资产逐条台账（类型/路径/许可/章号/用法/状态/风险） |
 | [第 5 章详细大纲（样章）](plan/ch05-outline.md) | 样章节/小节结构、公式/图/习题/文献清单、素材落点与仿真设计 |
+| [章节内容与素材确认单（模板）](plan/chapter-brief-template.md) | 每章动笔前须填写的定位/边界/节结构/素材来源/待确认项模板 |
+| [第 5 章内容与素材确认单](plan/ch05-brief.md) | 第 5 章边界、节结构、来源（含行号）、图/表/实验清单与 6 项待确认问题 |
 | [定时恢复资产包](plan/assets-timing-recovery.md) | Rice 数字通信译本（Ch8/附录 C）、MATLAB 参考实现与 PSP 的资产清单、勘误协议、术语映射与第 8 章骨架 |
 | [Rice 译本勘误登记](plan/errata-digital-communications.md) | 已确认勘误 E-01~E-06、待核项 V-01~V-06 与写作红线 |
 | [章节写作模板](templates/chapter-template.md) | 统一章节结构、写作标记、交付前自检清单 |
