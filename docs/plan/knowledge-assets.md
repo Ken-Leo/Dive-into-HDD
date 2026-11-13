@@ -40,7 +40,7 @@
 | 2 数据存储 | CSP1/CSP3、V1ch1 | FMS/MSST、References 存储系统 | 合同指标（PMR/TDMR/HAMR） | 厂商数据标白皮书版本 |
 | 3 磁记录基础/材料工艺 | V1ch1、CSP4/14/16 | OpenKB 概念（WriteHead/ReadHead/Media）、References 介质/磁头 | 无实验；参数表 | 厂商图重绘 |
 | 4 数学工具 | V1ch2–5、CSP7 | 教材（Bertram 等） | 无实验；附录 A | 经典教材引用 |
-| 5 记录物理/信道 | CSP2/5/6、V1ch6 | References 读信道/介质噪声；IEEEtran NLTS 论文 | exp:5-1~5-5；PRBS5 实测冲激；dibit | 实测数据标「本实验室实测」 |
+| 5 写入/读出/信道 | CSP2/5/6、V1ch6 | References 读信道/介质噪声；IEEEtran NLTS 论文 | exp:5-1~5-5；PRBS5 实测冲激；dibit | 实测数据标「本实验室实测」 |
 | 6 均衡 | CSP8、V2ch3、V1ch5.6 | References 均衡/PRML；IEEEtran NN 均衡 | exp:6-1~6-3；PRML-Explore、TDMR_RCP_MMSE、ABCForDisc | 算法引用原始论文 |
 | 7 检测 | CSP32/33、V2ch4–7、V3ch3 | References 检测/PRML；IEEEtran NN 检测 | exp:7-1~7-3；PRML-Explore、RSI4HDD、pytdmr | 对拍结果作验证 |
 | 8 定时 | V2ch2、CSP26/27、**Rice Ch8 + 附录 C**（需勘误，见 [定时恢复资产包](assets-timing-recovery.md)） | References 定时恢复；PSP docs 论文；Kovintavewat 2003/2012 | exp:8-1~8-2；PSP、RSI4HDD timing、MATLAB symbol_timing_sync（对拍） | 引用 ITR/OPSP 原始论文；Rice 书按原书页码引用 |
