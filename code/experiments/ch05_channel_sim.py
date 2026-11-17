@@ -77,7 +77,7 @@ def draw_channel_model(out_path: Path) -> Path:
         (3.25, 1.50, "差分 PAM\n$b_k=a_k-a_{k-1}$"),
         (4.90, 1.30, "脉冲成形\n$h(t)$"),
         (6.35, 1.35, "叠加\n$\\sum_k b_k h(t-kT)$"),
-        (7.85, 1.30, "读回\n$z(t)$"),
+        (7.85, 1.30, "回读\n$z(t)$"),
     ]
     for i, (x, w, txt) in enumerate(boxes):
         _box(ax, x, 3.55, w, 1.15, txt, fs=6.5)
@@ -85,7 +85,7 @@ def draw_channel_model(out_path: Path) -> Path:
         x0 = boxes[i][0] + boxes[i][1]
         _arrow(ax, (x0 + 0.02, 4.12), (boxes[i + 1][0] - 0.02, 4.12))
 
-    # 噪声注入：抖动噪声（1PW/2PW）与 AWGN 叠加到读回端
+    # 噪声注入：抖动噪声（1PW/2PW）与 AWGN 叠加到回读端
     _box(ax, 5.45, 1.15, 2.50, 0.95, "1PW/2PW 抖动噪声\n$\\Delta t_k,\\Delta w_k$（$\\sigma_j,\\sigma_a$）", fc="#fde0c4", fs=5.8)
     _box(ax, 8.05, 1.15, 1.70, 0.95, "AWGN\n$\\sigma_e^2$（OSR, α）", fc="#e2efda", fs=6)
     _arrow(ax, (6.70, 2.12), (6.70, 3.53), color="#d95f02", ls="--")
@@ -114,7 +114,7 @@ def draw_isi_peak(out_path: Path, *, quick: bool = False) -> Path:
     total = p0 + p1
     ax1.plot(t, p0, "--", color="#1f77b4", lw=1.1, label="跃迁 1 孤立脉冲")
     ax1.plot(t, p1, "--", color="#d95f02", lw=1.1, label="跃迁 2 孤立脉冲（反极性）")
-    ax1.plot(t, total, "k-", lw=1.8, label="叠加读回（ISI）")
+    ax1.plot(t, total, "k-", lw=1.8, label="叠加回读（ISI）")
     # 真实跃迁位置
     for tp in (0.0, T):
         ax1.axvline(tp, color="gray", ls=":", lw=0.8)
@@ -196,7 +196,7 @@ def draw_read_channel(out_path: Path) -> Path:
 
 
 def _simulate_readback(nd: float, sigma_j_rel: float, snr_db: float, rng, nbits: int, osr: int = OSR):
-    """生成 ND 归一化密度下的读回采样（含抖动与 AWGN），返回 (r, y_target)。"""
+    """生成 ND 归一化密度下的回读采样（含抖动与 AWGN），返回 (r, y_target)。"""
     t_bit = nd * PW50_NM
     symbols = rng.choice([-1.0, 1.0], size=nbits)  # 跃迁极性序列（NRZI 域）
     sigma_j = sigma_j_rel * PW50_NM

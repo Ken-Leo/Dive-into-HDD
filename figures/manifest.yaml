@@ -18,7 +18,7 @@
   command: python code/experiments/ch05_channel_sim.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-10-isi-peak-detect.png
-  output_sha256: d777fa7439148440b4a91dd931935486e498674cace30761fde681a9dbc87cf8
+  output_sha256: 77875e7115171cf1bd754daf0ed02178d61b4a8404de7b34a41dcdc02d3f3069
   source: 原创计算（重绘 Piya Ch6 图6.22/6.38 的 ISI 与峰移）
   license: CC BY 4.0（原创）
   status: draft
@@ -126,7 +126,7 @@
   command: python code/experiments/ch05_channel_sim.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-08-channel-model.png
-  output_sha256: 55e1c1053ee4bbcfd227362ed1449676df9a14cc95cc62f77e5dbb0d48fa22bd
+  output_sha256: d1d16ac8348d7c11c300cdd05bd365489a3369a81d1065eaddf790580980cfa3
   source: 原创重绘（改编自编码书 Ch5 图5.4 与式 5-15/5-16）
   license: CC BY 4.0（原创）
   status: draft
