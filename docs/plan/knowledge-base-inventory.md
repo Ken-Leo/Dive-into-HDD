@@ -95,7 +95,7 @@ python3 scripts/kb vocabulary / compare <概念>              # 词表与跨论�
 ## 六、结论：使用建议与风险
 
 1. **最有价值 5 类（按可立即取材排序）**：① OpenKB wiki+kb_index（第16/18章文献与前沿，kb 检索链完整）；② References 的 HAMR/TDMR/BPMR/TMRC/Intermag 子库（415+335 篇，含 TMRC2026）；③ IEEEtran 自著 10 篇（第5/7/16/17章可正式引用并重绘图）；④ HDDGroup2025 HAMR-Code-S1+1030-500Gb 实测（第15/16章实验与数据）；⑤ TapeGroup2025 PRBS5+磁传递函数/PRML-dynamicNLTS/TDMR_RCP_MMSE（第5/6/7章实测与仿真）。
-2. **数据敏感性**：HDDGroup2025（华为 HAMR SOW：620 Gb/in² PMR、1575 Gb/in² 30T HAMR、2.6 Tb/in² 挑战 4 Tb/in²）、TapeGroup2025（华为 TDMR TC20251106007，含 NDA 保密承诺书）、HDDTapeGroup（HDD 原型算法合同）均为公司横向项目；原始波形与内部报告引用前需确认，图建议重绘或标注“本实验室实测”。
+2. **数据敏感性**：HDDGroup2025（华为 HAMR SOW：620 Gb/in² PMR、1575 Gb/in² 30T HAMR、2.6 Tb/in² 挑战 4 Tb/in²）、TapeGroup2025（华为 TDMR TC20251106007，含 NDA 保密承诺书）、HDDTapeGroup（HDD 原型算法合同）均为公司横向项目。**本书不使用实测数据（作者 2026-11-17），故数据合规风险已解除**；如正文引用其实测结论，标「内部资料」或「文献实测」，不入图。
 3. **版权**：References/IEEE 论文只可引用不可整图复制；OpenKB wiki 是 MinerU+LLM 摘要页，引用须回溯原文并标 DOI；译稿版权在 Piya/CRC/Springer（material-audit 第五节），厂商/IEEE 图按前言计划原创重绘。
 4. **时效**：TMRC2026 Digest、Intermag2026、2026 年 HAMR 进展报告最新；References 以 1990s–2010s 为主，第16/18章需补 2024–2026 文献（kb search 可按年过滤）。
 5. **一致性**：OpenKB README 规模表（11,542/4,869/5,729）与 Home.md 及实测（10,171/32,132/9,481）不一致，引用规模用 Home.md 或实测；kb_index.json 建于 2026-11-01。

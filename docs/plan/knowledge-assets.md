@@ -15,7 +15,7 @@
 | 自著论文 | /Volumes/Elements/IEEEtran | 431 PDF；可正式引用约 10 篇 | 第 5/7/16/17 章的一手结论与图 | P0 |
 | 实验项目 | 16 项（RSI4HDD、PRML-Explore、PSP、HamrSimulator、RLL、TDMR_RCP_MMSE、pytdmr、dibit 等） | 8 项可运行 Python、6 项带测试/对拍 | 附录 C 12 个核心实验与章节演示 | P0 |
 | 项目报告 | HDDGroup2025、TapeGroup2025、HDDTapeGroup、HAMR-Progress×2 | 报告/Slides/月报/代码说明书 | 第 2/5/6/7/15/16/17 章工程结论 | P1 |
-| 实测数据 | 1030-500Gb（17 CSV/1.8 GB）、PRBS5 冲激响应、HAMR 写入波形 | 实测波形与冲激响应 | 第 5/15/16 章校准与图 | P0（需 NDA 确认） |
+| 实测数据 | 1030-500Gb（17 CSV/1.8 GB）、PRBS5 冲激响应、HAMR 写入波形 | 实测波形与冲激响应 | **不作为本书实验数据**（作者 2026-11-17：全书实验数据均为仿真数据）；仅作定性参考与文献结论引用 | P2（已解除 NDA 前置） |
 | 工具/模板 | IEEEtran 模板、bibtex、drawio、MinerU/OpenKB 管线 | 可复用 | 排版、引用、图件、知识抽取 | P2 |
 
 > 完整清单见[知识库核验](knowledge-base-inventory.md)与[实验资产清单](experiment-inventory.md)；逐条台账见 `asset-registry.csv`。
@@ -24,8 +24,8 @@
 
 ## 二、使用原则（三条铁律）
 
-1. **三源交叉**：每个关键技术论断至少有两个独立来源（译稿/教材 + 论文/实测数据），公式须独立推导或仿真验证；单一来源的结论标 `[待核]`。
-2. **分层使用**：理论素材（译稿）→ 改写为教学叙述；文献（OpenKB/References）→ 支撑与引用；实验（代码项目）→ 生成图与验证；数据（实测）→ 校准与案例。**禁止把译稿当论文引用，禁止把内部报告当公开文献引用**。
+1. **三源交叉**：每个关键技术论断至少有两个独立来源（译稿/教材 + 论文/仿真实验），公式须独立推导或仿真验证；单一来源的结论标 `[待核]`。
+2. **分层使用**：理论素材（译稿）→ 改写为教学叙述；文献（OpenKB/References）→ 支撑与引用；实验（代码项目）→ 生成图与验证；**数据（仿真）→ 图与验证，全书不引入实测数据**。**禁止把译稿当论文引用，禁止把内部报告当公开文献引用**。
 3. **合规先行**：公司数据（华为 NDA）先确认公开范围；IEEE/厂商图重绘；译稿在前言声明「编译/改写自」；自著未发表论文标注状态。
 
 ---
@@ -40,7 +40,7 @@
 | 2 数据存储 | CSP1/CSP3、V1ch1 | FMS/MSST、References 存储系统 | 合同指标（PMR/TDMR/HAMR） | 厂商数据标白皮书版本 |
 | 3 磁记录基础/材料工艺 | V1ch1、CSP4/14/16 | OpenKB 概念（WriteHead/ReadHead/Media）、References 介质/磁头 | 无实验；参数表 | 厂商图重绘 |
 | 4 数学工具 | V1ch2–5、CSP7 | 教材（Bertram 等） | 无实验；附录 A | 经典教材引用 |
-| 5 写入/读出/信道 | CSP2/5/6、V1ch6 | References 读信道/介质噪声；IEEEtran NLTS 论文 | exp:5-1~5-5；PRBS5 实测冲激；dibit | 实测数据标「本实验室实测」 |
+| 5 写入/读出/信道 | CSP2/5/6、V1ch6 | References 读信道/介质噪声；IEEEtran NLTS 论文 | exp:5-1~5-7（全部仿真） | 图表均由脚本生成，声明 SNR/ρ/OSR 等口径 |
 | 6 均衡 | CSP8、V2ch3、V1ch5.6 | References 均衡/PRML；IEEEtran NN 均衡 | exp:6-1~6-3；PRML-Explore、TDMR_RCP_MMSE、ABCForDisc | 算法引用原始论文 |
 | 7 检测 | CSP32/33、V2ch4–7、V3ch3 | References 检测/PRML；IEEEtran NN 检测 | exp:7-1~7-3；PRML-Explore、RSI4HDD、pytdmr | 对拍结果作验证 |
 | 8 定时 | V2ch2、CSP26/27、**Rice Ch8 + 附录 C**（需勘误，见 [定时恢复资产包](assets-timing-recovery.md)） | References 定时恢复；PSP docs 论文；Kovintavewat 2003/2012 | exp:8-1~8-2；PSP、RSI4HDD timing、MATLAB symbol_timing_sync（对拍） | 引用 ITR/OPSP 原始论文；Rice 书按原书页码引用 |
@@ -93,15 +93,15 @@ python3 scripts/kb cite <id> --format bibtex
 - TapeGroup2025：PRBS5 冲激响应（125 MSaps、46.6 nm）、TDMR_RCP_MMSE、磁传递函数报告。
 - HDDTapeGroup：SOW 指标（PMR+TDMR>1.33 Tb/in²、HAMR+TDMR 5–7 Tb/in²、BER<1e-15）可作工程背景。
 - HAMR-Progress×2：step1/step2 结论与图；图片路径需修正。
-- **合规**：华为横向项目（NDA），原始波形与内部报告引用前确认；图建议重绘或标「本实验室实测」。
+- **合规**：本书不用实测数据，图件全由仿真生成，无公司数据合规风险；内部报告引用时标「内部资料」，不作公开文献引用。
 
 ---
 
 ## 五、交叉核验与引用链
 
-1. **论断→证据**：正文关键结论建立「论断 ID → 译稿小节 / 论文 DOI / 实验 ID / 实测数据」四列对照，写入章节素材包。
+1. **论断→证据**：正文关键结论建立「论断 ID → 译稿小节 / 论文 DOI / 实验 ID / 仿真数据」四列对照，写入章节素材包。
 2. **引用链**：`references.bib`（kb cite + IEEEtran bibtex）为唯一文献库；正文引用编号由 bib 生成；每条 DOI/ISBN 核验。
-3. **数据口径**：任何 BER/SNR 结果必须同时声明 SNR 定义、α、OSR、码率、目标响应；实测数据声明采样率、带宽、比特长、道宽。
+3. **数据口径**：任何 BER/SNR 结果必须同时声明 SNR 定义、ρ/α、OSR、码率、目标响应、介质参数与随机种子；仿真数据须可由仓库脚本复现。
 4. **图文一致**：图由 `code/experiments/` 生成，manifest 登记；禁止手工改图。
 5. **时效**：第 16/18 章以 2024–2026 文献为主（TMRC2026、Intermag2026、HAMR 进展）；经典理论用原始文献。
 
@@ -111,7 +111,7 @@ python3 scripts/kb cite <id> --format bibtex
 
 | 风险 | 涉及资产 | 处置 |
 |------|----------|------|
-| 华为 NDA 数据 | HDDGroup2025、TapeGroup2025、HDDTapeGroup | 建立「可公开/需确认/不可公开」清单；图重绘或标「本实验室实测」 |
+| 华为 NDA 数据 | HDDGroup2025、TapeGroup2025、HDDTapeGroup | 本书不用实测数据，风险已解除；如需引用其结论，标「内部资料」且不入图 |
 | IEEE/厂商图版权 | References、IEEEtran、译稿图 | 全部重绘；图 license 台账；必要时申请 permission |
 | 译稿版权 | 8 套译稿（含 Rice CC BY-NC-ND 4.0） | 前言声明；改写不照搬；不作学术引用；Rice 译本另建勘误登记 |
 | 知识库数字过期 | OpenKB README | 用 Home.md/实测数字；引用规模注明日期 |
@@ -128,7 +128,7 @@ python3 scripts/kb cite <id> --format bibtex
 1. 建 `references.bib`：用 `kb cite` + IEEEtran bibtex 导入第 5/7/16 章核心文献（≥40 条），逐条核 DOI。
 2. 建 `docs/plan/asset-registry.csv` 并补全 8 类资产与 16 个实验项目的条目（本文件已建初始版）。
 3. 出「华为/NDA 数据引用确认清单」：列出拟使用的图/数据/结论，交作者确认公开范围。
-4. 校验实测数据：1030-500Gb CSV 可读性、PRBS5 冲激响应完整性；剔除全零 zip。
+4. 校验仿真数据可复现：脚本、种子、参数表、manifest 四项齐备（实测数据只作旁证，不入书）。
 5. 第 5 章素材包：按矩阵取 CSP2/5/6、V1ch6、PRBS5、dibit，标注每条论断的证据来源。
 6. 第 8 章素材包：Rice Ch8 + 附录 C（按勘误协议）、MATLAB `symbol_timing_sync` 对拍值、PSP 的 ITR/OPSP 代码与论文；先登记 V-01~V-06 待核项。
 
