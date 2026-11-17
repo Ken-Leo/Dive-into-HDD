@@ -29,7 +29,7 @@
 | 8.4 | Discrete-Time Techniques for M-ary PAM | 445 | **本章主体**：8.4.1 TED（MLTED/ELTED/ZCTED/GTED/MMTED）、8.4.2 插值、8.4.3 插值控制（NCO/模 1 计数器）、8.4.4 环路滤波器与常数、8.4.5 性能 |
 | 8.5 | Discrete-Time Techniques for MQAM | 494 | 复数基带与两路定时 |
 | 8.6 | Discrete-Time Techniques for Offset QPSK | 497 | 偏移 QPSK 的定时特殊性 |
-| 8.7 | Dealing with Transition Density / 处理跃变密度 | 501 | 自噪声与数据跃变密度的关系；MAN 脉冲形状；扰码/随机化（IRIG-106） |
+| 8.7 | Dealing with Transition Density / 处理跃迁密度 | 501 | 自噪声与数据跃迁密度的关系；MAN 脉冲形状；扰码/随机化（IRIG-106） |
 | 8.8 | Maximum Likelihood Estimation / 最大似然估计 | 503 | MLTED 的似然推导；定时偏移估计上界 |
 | 8.9 | Notes and References | 513 | 文献溯源（含 Gardner、Mueller-Müller 原始文献） |
 | 8.10 | Exercises | 515 | 习题参考（可改造为 HDD 语境习题） |
@@ -51,9 +51,9 @@
 
 | ID | 位置 | 问题 | 更正 | 证据 |
 |----|------|------|------|------|
-| E-01 | 8.7 节首段 | 脚注编号「4」粘入正文，译本作「跃变密度约为4 50%」 | 应为「约为 50%（脚注 4）」 | `source_final/chapter_8.md` 原文 `approximately4 50%`；`chinese_final/chapter_8.md` 第 2964 行 |
+| E-01 | 8.7 节首段 | 脚注编号「4」粘入正文，译本作「跃迁密度约为4 50%」 | 应为「约为 50%（脚注 4）」 | `source_final/chapter_8.md` 原文 `approximately4 50%`；`chinese_final/chapter_8.md` 第 2964 行 |
 | E-02 | 8.4.1 正文与图 8.4.4/8.4.7/8.4.11 题注 | 同一量 $K_p$ 被译作「检测器增益」与「鉴相器增益」两种；源书亦混用 `detector gain` / `phase detector gain` | 本书统一为「TED 增益 $K_p$（等效鉴相增益）」，首次出现处定义 | `source_final/chapter_8.md` L497 vs L520/L678/L932；`chinese_final/chapter_8.md` L497 vs L520 |
-| E-03 | 全章 | `transition`/`transition density` 译作「跃变/跃变密度」，与本书第 5 章既定「翻转/翻转密度」不一致 | 统一改为「翻转/翻转密度」；首次出现处标注英文 | 第 5 章正文与 `ch05-outline.md` 用「翻转」 |
+| E-03 | 全章 | `transition`/`transition density` 译作「跃迁/跃迁密度」，与本书第 5 章既定「跃迁/跃迁密度」不一致 | 统一改为「跃迁/跃迁密度」；首次出现处标注英文 | 第 5 章正文与 `ch05-outline.md` 用「跃迁」 |
 | E-04 | 图题注与参考文献 | 参考文献编号被 PDF 抽取拆散（如「[ 1 4 1 ]」），图题注中的数字亦有空格残留 | 引用时按原书页码核对；书稿中重排编号 | `chinese_final/chapter_8.md` 图 8.7.2 题注 |
 | E-05 | 8.1 节 | `NCO` 保留英文缩写未在首次出现处定义 | 首次出现写「数控振荡器（NCO）」 | 译本 8.1/8.4.2 |
 | E-06 | 全章公式 | 公式与 `\tag` 逐字节保留（第 8 章 138 个 tag、附录 C 70 个 tag 与英文源完全一致），但空格拆散、上下标可能丢失 | 公式可用，但必须重排并逐式核对原书 | 自动核验：tag 集合完全相同，行内公式 988/988、行间公式 192/192 |
@@ -71,7 +71,7 @@
 
 | 英文 | 译本用词 | 本书用词 | 说明 |
 |------|----------|----------|------|
-| transition / transition density | 跃变 / 跃变密度 | 翻转 / 翻转密度 | 与第 5 章、第 13 章 RLL 术语一致 |
+| transition / transition density | 跃变 / 跃变密度 | 跃迁 / 跃迁密度 | 本书统一用「跃迁」，禁用「跃变」；与第 5 章、第 13 章 RLL 术语一致 |
 | timing error detector (TED) | 定时误差检测器 | 定时误差检测器（TED） | 首次出现给英文缩写 |
 | phase detector gain / detector gain $K_p$ | 鉴相器增益 / 检测器增益 | TED 增益 $K_p$ | 统一，见 E-02 |
 | S-curve | S 曲线 | S 曲线（鉴相特性） | 首次出现说明物理含义 |
@@ -80,7 +80,7 @@
 | voltage controlled clock (VCC) | 压控时钟 | 压控时钟（VCC） | 连续时间实现，HDD 中少见 |
 | NCO / DDS | 未定义缩写 | 数控振荡器（NCO） | 见 E-05 |
 | self-noise | 自噪声 | 自噪声 | 与数据图样相关，需结合 5.5.3 非线性 |
-| transition density | 跃变密度 | 翻转密度 | 与第 5 章噪声谱、第 13 章 RLL 衔接 |
+| transition density | 跃变密度 | 跃迁密度 | 与第 5 章噪声谱、第 13 章 RLL 衔接 |
 
 ---
 
@@ -127,14 +127,14 @@
 | 8.2 | 定时误差检测：MLTED/ELTED/ZCTED/GTED/MMTED 的统一框架 | Rice 8.2/8.4.1 | 图：五类 TED 的 S 曲线族；exp:8-1 |
 | 8.3 | S 曲线、TED 增益与环路常数设计 | Rice 8.4.1/8.4.4 + 附录 C | 图：$K_p$–滚降曲线；表：环路常数 |
 | 8.4 | 插值与插值控制：Farrow/多相/线性二次三次 | Rice 8.4.2/8.4.3 | 图：插值阶数与 MER 关系 |
-| 8.5 | 数据图样与自噪声：翻转密度、扰码与写前补偿的耦合 | Rice 8.7 + 第 5 章 5.5.3 | 图：翻转密度–TED 增益 |
+| 8.5 | 数据图样与自噪声：跃迁密度、扰码与写前补偿的耦合 | Rice 8.7 + 第 5 章 5.5.3 | 图：跃迁密度–TED 增益 |
 | 8.6 | 频率偏移与捕获：二阶环路、频偏估计、失锁检测 | 附录 C.2 + PSP ITR | 图：频偏捕获轨迹 |
 | 8.7 | ITR 与逐幸存路径定时（OPSP）：HDD 特有的联合检测 | PSP OPSP-VA/ITR 2012 | exp:8-2；图：BER vs 抖动 |
 | 8.8 | 工程实现要点与门禁（抖动容限、环路带宽、OSR 折中） | 综合 | 表：设计参数与验收口径 |
 
 实验设计：
 
-- **exp:8-1**：五类 TED 的 S 曲线与增益 $K_p$ 随滚降/翻转密度的变化（MATLAB 参考值 + Python 复现，两者误差 <5% 才可入书）。
+- **exp:8-1**：五类 TED 的 S 曲线与增益 $K_p$ 随滚降/跃迁密度的变化（MATLAB 参考值 + Python 复现，两者误差 <5% 才可入书）。
 - **exp:8-2**：ITR 2012 与 OPSP-VA 在介质抖动/时钟抖动/频偏下的 BER 对比（PSP 移植，固定 seed，输出 CSV + manifest）。
 
 ---

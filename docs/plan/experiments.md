@@ -76,7 +76,7 @@
 code/
 ├── hddbook/
 │   ├── channel.py        # PMR/LMR 脉冲、dibit、抖动、AWGN、过采样
-│   ├── media_noise.py    # DC 剩磁/翻转噪声、σj/σa、SNR 定义族
+│   ├── media_noise.py    # DC 剩磁/跃迁噪声、σj/σa、SNR 定义族
 │   ├── equalization.py   # MMSE/GPR 目标、LMS、2D 均衡
 │   ├── detection.py      # Viterbi/NPML/PDNP/DD-NPML/BCJR
 │   ├── timing.py         # PLL、Farrow、前导估计

@@ -1,24 +1,24 @@
 - figure_id: fig:5-1
   chapter: 5
   section: 5.2.1
-  title: 纵向/垂直记录写场几何、锯齿形翻转壁与坐标系（d、t、s、SUL）
+  title: 纵向/垂直记录写场几何、锯齿形跃迁壁与坐标系（d、t、s、SUL）
   script: code/experiments/ch05_write_field.py
   command: python code/experiments/ch05_write_field.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-01-write-geometry.png
-  output_sha256: a013254c1020e57ce31a0c7ec31de52f0b255f31ce5a86e1a16e5199b3422ba5
+  output_sha256: 8f0bdd2369d35e36c827c355e7dcae3cbd874dd29616d58c170a391cb018b1ad
   source: 原创重绘（据编码书 Ch2 图2.2/2.3 的几何关系；式 5-1/5-5）
   license: CC BY 4.0（原创）
   status: draft
 - figure_id: fig:5-10
   chapter: 5
   section: 5.7.2
-  title: ND=1/3 时相邻翻转脉冲叠加、ISI 与峰值检测误判
+  title: ND=1/3 时相邻跃迁脉冲叠加、ISI 与峰值检测误判
   script: code/experiments/ch05_channel_sim.py
   command: python code/experiments/ch05_channel_sim.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-10-isi-peak-detect.png
-  output_sha256: 399f583f8c50dbcbd1f824cab62e8a463141cbb73a5c6b7f617d5ca291d27d61
+  output_sha256: d777fa7439148440b4a91dd931935486e498674cace30761fde681a9dbc87cf8
   source: 原创计算（重绘 Piya Ch6 图6.22/6.38 的 ISI 与峰移）
   license: CC BY 4.0（原创）
   status: draft
@@ -61,12 +61,12 @@
 - figure_id: fig:5-3
   chapter: 5
   section: 5.2.2
-  title: 磁滞回线族与翻转参数 a 随 H0/Hc、Mr·t、⟨D⟩ 的变化
+  title: 磁滞回线族与跃迁参数 a 随 H0/Hc、Mr·t、⟨D⟩ 的变化
   script: code/experiments/ch05_write_field.py
   command: python code/experiments/ch05_write_field.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-03-hysteresis-a.png
-  output_sha256: 8abfe45b95d3eb35c497d9ad17f274b7b5c6b2b6b2fadeea251926f19dfc0ffe
+  output_sha256: 95a5c77dc62abb54bef7c70e5dbf60e6dc031aad011ca9f12c58de81b827497b
   source: 原创计算（式 5-2/5-4；改编自编码书 Ch2 图2.4 与式 2.14/2.15）
   license: CC BY 4.0（原创）
   status: draft
@@ -109,12 +109,12 @@
 - figure_id: fig:5-7
   chapter: 5
   section: 5.4.1
-  title: 介质噪声谱分解（DC 剩磁/翻转/总噪声）
+  title: 介质噪声谱分解（DC 剩磁/跃迁/总噪声）
   script: code/experiments/ch05_media_noise.py
   command: python code/experiments/ch05_media_noise.py --out figures/ch05
   data: null
   output: figures/ch05/fig05-07-media-noise.png
-  output_sha256: ee3f6c766ed86027f13444a0768f87a775f3de4e7b76ef5c8ec1dc2b8e236f19
+  output_sha256: c98037804e4e7e2b7b42440997e0d2b65e06a1d8d582bc14b1e1692eb0ffdca3
   source: 原创计算（式 5-11/5-12；据编码书 Ch2 §2.4.1 的噪声谱分解）
   license: CC BY 4.0（原创）
   status: draft

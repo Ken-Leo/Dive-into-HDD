@@ -1,7 +1,7 @@
 """例 5-5：信道模型、ISI/峰值检测、读信道链路与均衡前后星座。
 
 对应第 5 章 5.5–5.7 节，生成图 5-8（PAM 差分信道 + 1PW/2PW 抖动噪声 + AWGN
-框图）、图 5-10（ND=1/3 时相邻翻转脉冲叠加、ISI 与峰值检测误判）、图 5-11
+框图）、图 5-10（ND=1/3 时相邻跃迁脉冲叠加、ISI 与峰值检测误判）、图 5-11
 （读信道链路框图）、图 5-12（均衡前后样本星座，ND=0.5/2.5，PR4 目标）。
 
 另输出 BER/SER-SNR_e 数据表（例 5-5 的数值结果；正文图清单未单列该曲线）。
@@ -101,21 +101,21 @@ def draw_channel_model(out_path: Path) -> Path:
 
 
 def draw_isi_peak(out_path: Path, *, quick: bool = False) -> Path:
-    """图 5-10：ND=1/3 时相邻翻转脉冲叠加、ISI 与峰值检测误判。"""
+    """图 5-10：ND=1/3 时相邻跃迁脉冲叠加、ISI 与峰值检测误判。"""
     import matplotlib.pyplot as plt
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.6, 3.2), constrained_layout=True)
 
-    # (a) 相邻翻转脉冲叠加：ND=T/PW50=1/3
+    # (a) 相邻跃迁脉冲叠加：ND=T/PW50=1/3
     t = np.linspace(-0.8 * PW50_NM, 1.2 * PW50_NM, 1200 if quick else 4000)
     T = PW50_NM / 3.0
     p0 = signals.longitudinal_pulse(t, PW50_NM)
     p1 = -signals.longitudinal_pulse(t - T, PW50_NM)
     total = p0 + p1
-    ax1.plot(t, p0, "--", color="#1f77b4", lw=1.1, label="翻转 1 孤立脉冲")
-    ax1.plot(t, p1, "--", color="#d95f02", lw=1.1, label="翻转 2 孤立脉冲（反极性）")
+    ax1.plot(t, p0, "--", color="#1f77b4", lw=1.1, label="跃迁 1 孤立脉冲")
+    ax1.plot(t, p1, "--", color="#d95f02", lw=1.1, label="跃迁 2 孤立脉冲（反极性）")
     ax1.plot(t, total, "k-", lw=1.8, label="叠加读回（ISI）")
-    # 真实翻转位置
+    # 真实跃迁位置
     for tp in (0.0, T):
         ax1.axvline(tp, color="gray", ls=":", lw=0.8)
     # 叠加波形峰位（在 0 附近搜索）与峰值检测误判
@@ -198,9 +198,9 @@ def draw_read_channel(out_path: Path) -> Path:
 def _simulate_readback(nd: float, sigma_j_rel: float, snr_db: float, rng, nbits: int, osr: int = OSR):
     """生成 ND 归一化密度下的读回采样（含抖动与 AWGN），返回 (r, y_target)。"""
     t_bit = nd * PW50_NM
-    symbols = rng.choice([-1.0, 1.0], size=nbits)  # 翻转极性序列（NRZI 域）
+    symbols = rng.choice([-1.0, 1.0], size=nbits)  # 跃迁极性序列（NRZI 域）
     sigma_j = sigma_j_rel * PW50_NM
-    # 直接用 ±1 翻转极性序列叠加，便于与 PR4 目标 y_k=s_k+s_{k-1} 对齐
+    # 直接用 ±1 跃迁极性序列叠加，便于与 PR4 目标 y_k=s_k+s_{k-1} 对齐
     dt = t_bit / osr
     time = np.arange(-2 * osr, (nbits + 2) * osr) * dt
     wave = np.zeros_like(time)
@@ -307,7 +307,7 @@ def main(argv: list[str] | None = None) -> Path:
     )
     io.record_figure(
         "fig:5-10", section="5.7.2",
-        title="ND=1/3 时相邻翻转脉冲叠加、ISI 与峰值检测误判",
+        title="ND=1/3 时相邻跃迁脉冲叠加、ISI 与峰值检测误判",
         output=f10, source="原创计算（重绘 Piya Ch6 图6.22/6.38 的 ISI 与峰移）", **common,
     )
     io.record_figure(

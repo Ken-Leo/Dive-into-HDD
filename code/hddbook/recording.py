@@ -1,4 +1,4 @@
-"""第 5 章记录物理模型（Karlqvist 写场、翻转参数、互易读出、介质噪声）。
+"""第 5 章记录物理模型（Karlqvist 写场、跃迁参数、互易读出、介质噪声）。
 
 本模块把第 5 章正文公式 5-1～5-12（对应编码书 Ch2 式 2.1、2.9、2.10、2.14、
 2.15、2.26、2.27、2.36、2.39、2.43、2.45、2.57、2.60、2.62）实现为可直接
@@ -18,7 +18,7 @@ from __future__ import annotations
 import numpy as np
 from scipy.integrate import simpson
 
-#: Williams-Comstock 退磁梯度形状因子（tanh 翻转形状，源书式 2.13）
+#: Williams-Comstock 退磁梯度形状因子（tanh 跃迁形状，源书式 2.13）
 I_WC = 0.691
 
 #: 颗粒修正系数（源书式 2.15）
@@ -48,7 +48,7 @@ def karlqvist_field(x_nm, y_nm, gw_nm: float, h0_oe: float):
 
 
 def transition_position(h0_over_hc: float, gw_nm: float, gamma_nm: float) -> float:
-    """纵向翻转中心 x0（式 5-5 / 源书式 2.9），返回 nm。
+    """纵向跃迁中心 x0（式 5-5 / 源书式 2.9），返回 nm。
 
     分两支：H0 > 2Hc 用正切分支，H0 <= 2Hc 用 y 分支。若判别式为负说明
     场峰不足以越过 Hc，返回 nan。
@@ -71,7 +71,7 @@ def transition_position(h0_over_hc: float, gw_nm: float, gamma_nm: float) -> flo
 
 
 def head_field_gradient(h0_over_hc: float, gw_nm: float, hc_oe: float, gamma_nm: float):
-    """翻转中心处写场梯度 dHa/dx 与归一化梯度 Q（式 5-5 / 源书式 2.10）。
+    """跃迁中心处写场梯度 dHa/dx 与归一化梯度 Q（式 5-5 / 源书式 2.10）。
 
     返回 ``(x0_nm, dHa_dx_oe_per_nm, Q)``。``dHa/dx = -Q*Hc/gamma``。
     """
@@ -91,7 +91,7 @@ def williams_comstock_a(
     s_star: float,
     gw_nm: float,
 ) -> float:
-    """Williams-Comstock 翻转参数 a_WC（式 5-4 / 源书式 2.14），返回 nm。
+    """Williams-Comstock 跃迁参数 a_WC（式 5-4 / 源书式 2.14），返回 nm。
 
     ``mr_t_g_nm = Mr[G] * t[nm]``。梯度不足（Q 很小）时 a_WC 迅速增大。
     """
@@ -104,7 +104,7 @@ def williams_comstock_a(
 
 
 def grain_limited_a(a_wc_nm: float, grain_nm: float) -> float:
-    """颗粒修正后的翻转参数 a（式 5-4 / 源书式 2.15），返回 nm。
+    """颗粒修正后的跃迁参数 a（式 5-4 / 源书式 2.15），返回 nm。
 
     a = sqrt((<D>/pi)^2 + 0.35 a_WC^2)，颗粒下限为 <D>/pi。
     """
@@ -161,7 +161,7 @@ def remanence_ratio(s_star: float) -> float:
 
 
 def replay_envelope(k_nm_inv, *, g_nm=50.0, delta_nm=5.0, a_nm=5.0, gamma_nm=15.0):
-    """纵向孤立翻转读出脉冲的傅里叶包络（式 5-7 / 源书式 2.27 被积函数）。
+    """纵向孤立跃迁读出脉冲的傅里叶包络（式 5-7 / 源书式 2.27 被积函数）。
 
     ``k`` 为空间频率（1/nm）。返回未归一化的 V_sp(k) 包络，供精确积分、
     roll-off 叠加与噪声谱使用。k=0 附近取极限值 1。
@@ -189,7 +189,7 @@ def exact_replay_pulse(
     kmax_nm_inv: float = 8.0,
     chunk: int = 200,
 ):
-    """纵向孤立翻转读出脉冲的精确数值积分（式 5-7 / 源书式 2.27）。
+    """纵向孤立跃迁读出脉冲的精确数值积分（式 5-7 / 源书式 2.27）。
 
     对 e^{-k gamma} (pi^2 k a/4)/sinh(pi^2 k a/4) sinc(kg/2) sinc(k(g+delta)/2)
     cos(kx) 做 0..kmax 的 Simpson 积分；返回值按峰值归一化为 1。
@@ -422,7 +422,7 @@ def transition_noise_psd(
     s_cross_nm: float = 15.0,
     w_read_nm: float = 200.0,
 ):
-    """翻转噪声谱（式 5-12 / 源书式 2.60 的纵向形式），返回任意单位 PSD。
+    """跃迁噪声谱（式 5-12 / 源书式 2.60 的纵向形式），返回任意单位 PSD。
 
     只保留抖动/形状涨落主导项：e^{-2k gamma} sinc^2(kg/2) sinc^2(k(g+delta)/2)
     [1-(pi^2 k a/4/sinh(pi^2 k a/4))^2]。
@@ -479,7 +479,7 @@ def head_potential_ft(k_nm_inv, *, g_nm=50.0, delta_nm=5.0, gamma_nm=15.0):
 
 
 def transition_magnetization_ft(k_nm_inv, *, a_nm=5.0, mr_over_ms=1.0):
-    """tanh 翻转剖面的磁化谱 |M(k)|（式 5-6 / 源书式 2.26），任意单位。"""
+    """tanh 跃迁剖面的磁化谱 |M(k)|（式 5-6 / 源书式 2.26），任意单位。"""
     k = np.atleast_1d(np.asarray(k_nm_inv, dtype=float))
     k = np.maximum(k, 1e-9)
     with np.errstate(over="ignore", invalid="ignore", divide="ignore"):

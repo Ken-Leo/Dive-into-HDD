@@ -1,4 +1,4 @@
-"""例 5-1：纵向/垂直记录写场几何、Karlqvist 写场与翻转参数 a。
+"""例 5-1：纵向/垂直记录写场几何、Karlqvist 写场与跃迁参数 a。
 
 对应第 5 章 5.2 节，生成图 5-1（写场几何示意）、图 5-2（Karlqvist 等值线与
 道内场梯度）、图 5-3（磁滞回线族与 a 随 H0/Hc、Mr·t、⟨D⟩ 的变化）。
@@ -86,7 +86,7 @@ def _double_arrow(ax, p0, p1, text, offset=(0, 0), fontsize=8) -> None:
 
 
 def draw_write_geometry(out_path: Path) -> Path:
-    """图 5-1：纵向/垂直记录写场、翻转锯齿壁与坐标系（d、t、s、SUL）。"""
+    """图 5-1：纵向/垂直记录写场、跃迁锯齿壁与坐标系（d、t、s、SUL）。"""
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyArrowPatch, Polygon, Rectangle
 
@@ -98,7 +98,7 @@ def draw_write_geometry(out_path: Path) -> Path:
     # ---------------- (a) 纵向记录 ----------------
     ax_l.set_xlim(-330, 330)
     ax_l.set_ylim(-95, 190)
-    ax_l.set_title("(a) 纵向记录：面内写场与锯齿形翻转壁", fontsize=9)
+    ax_l.set_title("(a) 纵向记录：面内写场与锯齿形跃迁壁", fontsize=9)
 
     # 衬底 + 介质膜（厚度 t）
     ax_l.add_patch(Rectangle((-240, -30), 480, 30, fc="#cfcfcf", ec="k", lw=0.8))
@@ -118,10 +118,10 @@ def draw_write_geometry(out_path: Path) -> Path:
     _double_arrow(ax_l, (-218, 40), (-218, 70), "d", offset=(-13, 0))
     _double_arrow(ax_l, (255, 0), (255, 40), "t", offset=(13, 0))
 
-    # 锯齿形翻转壁（沿 y 方向来回摆动）
+    # 锯齿形跃迁壁（沿 y 方向来回摆动）
     zig = [(6.0 * (1 if j % 2 else -1), 40.0 * j / 10.0) for j in range(11)] + [(0.0, 40.0)]
     ax_l.add_patch(Polygon(zig, closed=False, fill=False, ec="#b2182b", lw=2.4, zorder=5))
-    ax_l.text(12, 34, "锯齿形翻转壁", fontsize=6.8, color="#b2182b", va="center")
+    ax_l.text(12, 34, "锯齿形跃迁壁", fontsize=6.8, color="#b2182b", va="center")
 
     # 面内磁化箭头：左侧 -x，右侧 +x
     for xs in (-205, -165, -125, -85, -50):
@@ -146,10 +146,10 @@ def draw_write_geometry(out_path: Path) -> Path:
                   arrowprops=dict(arrowstyle="-|>", lw=1.0, color="#d95f02", ls="--"))
     ax_l.text(4, 56, r"$H_0>2H_c$", fontsize=7, color="#d95f02", va="center")
 
-    # 翻转中心 x0
+    # 跃迁中心 x0
     ax_l.plot([0], [-10], marker="v", ms=5, color="#b2182b")
     ax_l.plot([0, 0], [-12, -40], ls=":", lw=0.8, color="#b2182b")
-    ax_l.text(0, -48, r"$x_0$（翻转中心）", fontsize=7, ha="center", color="#b2182b")
+    ax_l.text(0, -48, r"$x_0$（跃迁中心）", fontsize=7, ha="center", color="#b2182b")
     _draw_triad(ax_l, -318, 128, 26)
 
     # ---------------- (b) 垂直记录 ----------------
@@ -184,11 +184,11 @@ def draw_write_geometry(out_path: Path) -> Path:
     ax_p.text(-205, 43, r"$+M_r$", fontsize=8, color="#1f4e79")
     ax_p.text(255, 46, r"$-M_r$", fontsize=8, color="#1f4e79")
 
-    # 垂直翻转壁
+    # 垂直跃迁壁
     ax_p.plot([0, 0], [0, 40], color="#b2182b", lw=2.4, zorder=5)
     for j in range(1, 6):
         ax_p.plot([-3.5, 3.5], [7.0 * j, 7.0 * j], color="#b2182b", lw=0.8, alpha=0.55)
-    ax_p.text(10, 45, "垂直翻转壁", fontsize=6.8, color="#b2182b", va="center")
+    ax_p.text(10, 45, "垂直跃迁壁", fontsize=6.8, color="#b2182b", va="center")
 
     # 写场：主极 → 介质 → SUL → 屏蔽 的回路
     for xs, rad in ((-25, 0.22), (0, 0.0), (18, -0.22)):
@@ -306,7 +306,7 @@ def draw_hysteresis_and_a(out_path: Path, *, quick: bool = False) -> Path:
     ax2.axhline(GRAIN_NM / np.pi, color="#b2182b", ls=":", lw=1.0, label=r"$\langle D\rangle/\pi$ 下限")
     ax2.axvline(H0_OVER_HC, color="gray", lw=0.8, ls=":")
     ax2.set_xlabel(r"深间隙场比 $H_0/H_c$")
-    ax2.set_ylabel("翻转参数 a / nm")
+    ax2.set_ylabel("跃迁参数 a / nm")
     ax2.set_title(r"(b) a 随 $H_0/H_c$、$M_r t$ 的变化", fontsize=9)
     ax2.legend(fontsize=6, loc="upper right")
     ax2.grid(alpha=0.3)
@@ -321,7 +321,7 @@ def draw_hysteresis_and_a(out_path: Path, *, quick: bool = False) -> Path:
         ax3.plot(d_grid, a_vals, color=col, label=rf"$H_0/H_c={r:.1f}$")
     ax3.plot(d_grid, d_grid / np.pi, "k:", lw=1.0, label=r"$\langle D\rangle/\pi$")
     ax3.set_xlabel(r"平均晶粒尺寸 $\langle D\rangle$ / nm")
-    ax3.set_ylabel("翻转参数 a / nm")
+    ax3.set_ylabel("跃迁参数 a / nm")
     ax3.set_title(r"(c) a 随 $\langle D\rangle$ 的变化（颗粒下限）", fontsize=9)
     ax3.legend(fontsize=6, loc="upper left")
     ax3.grid(alpha=0.3)
@@ -360,7 +360,7 @@ def main(argv: list[str] | None = None) -> Path:
         "fig:5-1",
         chapter=5,
         section="5.2.1",
-        title="纵向/垂直记录写场几何、锯齿形翻转壁与坐标系（d、t、s、SUL）",
+        title="纵向/垂直记录写场几何、锯齿形跃迁壁与坐标系（d、t、s、SUL）",
         script="code/experiments/ch05_write_field.py",
         command=f"python code/experiments/ch05_write_field.py --out {rel(outdir)}",
         output=f1,
@@ -382,7 +382,7 @@ def main(argv: list[str] | None = None) -> Path:
         "fig:5-3",
         chapter=5,
         section="5.2.2",
-        title="磁滞回线族与翻转参数 a 随 H0/Hc、Mr·t、⟨D⟩ 的变化",
+        title="磁滞回线族与跃迁参数 a 随 H0/Hc、Mr·t、⟨D⟩ 的变化",
         script="code/experiments/ch05_write_field.py",
         command=f"python code/experiments/ch05_write_field.py --out {rel(outdir)}",
         output=f3,

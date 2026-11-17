@@ -29,7 +29,7 @@ from hddbook import config, io, plotting, recording  # noqa: E402
 # ---- 例 5-2 默认参数（nm；CGS 高斯制）----
 G_NM = 50.0          # GMR 读出间隙 g=(G-δ)/2
 DELTA_NM = 5.0       # GMR 自由层厚度 δ
-A_NM = 5.0           # 翻转参数 a
+A_NM = 5.0           # 跃迁参数 a
 GAMMA_NM = 15.0      # 净磁间距 γ=d+t/2
 ETA_BOOK = 0.43      # 教材 Voigt 权重（源书图 2.5 标定值）
 D_NM = 12.5          # 垂直记录磁头-介质间距 d（γ=15、t=5）

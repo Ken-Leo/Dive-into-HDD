@@ -1,7 +1,7 @@
-"""例 5-4：介质噪声谱分解（DC 剩磁 / 翻转 / 总噪声）。
+"""例 5-4：介质噪声谱分解（DC 剩磁 / 跃迁 / 总噪声）。
 
 对应第 5 章 5.4 节，生成图 5-7（介质噪声谱分解与方形度依赖）。DC 剩磁噪声
-按源书式 2.57、翻转噪声按式 2.60，方形度通过式 2.56 的磁化方差与式 2.62 的
+按源书式 2.57、跃迁噪声按式 2.60，方形度通过式 2.56 的磁化方差与式 2.62 的
 σj/σa 关联；垂直介质方形度=1 时 DC 分量消失（图 5-7(b) 的端点）。
 
 参数取正文例 5-4：S_cross=0.68–2.5⟨D⟩、Mr/Ms=0.6–1.0、σV/⟨V⟩=0.1–0.3。
@@ -52,7 +52,7 @@ def _resolve_outdir(out: str, primary_name: str) -> tuple[Path, Path]:
 
 
 def draw_media_noise(out_path: Path, *, quick: bool = False) -> Path:
-    """图 5-7：介质噪声谱分解（DC 剩磁/翻转/总噪声）与方形度依赖。"""
+    """图 5-7：介质噪声谱分解（DC 剩磁/跃迁/总噪声）与方形度依赖。"""
     import matplotlib.pyplot as plt
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.6, 3.2), constrained_layout=True)
@@ -72,7 +72,7 @@ def draw_media_noise(out_path: Path, *, quick: bool = False) -> Path:
     total = dc + tr
     norm = np.max(total)
     ax1.loglog(kx, np.maximum(dc / norm, 1e-6), color="#1f77b4", lw=1.5, label=r"DC 剩磁分量（式 5-11）")
-    ax1.loglog(kx, np.maximum(tr / norm, 1e-6), color="#d95f02", lw=1.5, label=r"翻转分量（式 5-12）")
+    ax1.loglog(kx, np.maximum(tr / norm, 1e-6), color="#d95f02", lw=1.5, label=r"跃迁分量（式 5-12）")
     ax1.loglog(kx, np.maximum(total / norm, 1e-6), color="k", lw=1.8, label="总噪声")
     ax1.axvline(np.pi, color="gray", ls=":", lw=0.8)
     ax1.text(np.pi * 1.02, 1.25, r"$k=\pi/\mathrm{PW}_{50}$", fontsize=6.5, color="gray", va="bottom")
@@ -128,7 +128,7 @@ def main(argv: list[str] | None = None) -> Path:
         "fig:5-7",
         chapter=5,
         section="5.4.1",
-        title="介质噪声谱分解（DC 剩磁/翻转/总噪声）",
+        title="介质噪声谱分解（DC 剩磁/跃迁/总噪声）",
         script="code/experiments/ch05_media_noise.py",
         command=f"python code/experiments/ch05_media_noise.py --out {rel(outdir)}",
         output=fig_path,
